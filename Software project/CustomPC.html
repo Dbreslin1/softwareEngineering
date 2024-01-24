@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Joseph">
+    <meta name="description" content="PC Part picker and recommender system">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Choose Your Parts</title>
+</head>
+
+<body>
+    <header>
+        <div>
+            <nav>
+                <a href="Home.html" draggable="false"><img src="images/white-frame-free-png.png" class="logo"
+                        draggable="false"></a>
+                <ul>
+                    <li><a href="CustomPC.html" draggable="false">Builder</a></li>
+                    <li><a href="Comparison.html" draggable="false">Comparison</a></li>
+                    <li><a href="" draggable="false">Support</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <h1>Choose Your Parts</h1>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 20%">Component</th>
+                <th>Selected</th>
+                <th style="width: 100px;">Price</th>
+                <th style="width: 100px;">Compatability</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a href="Comparison.html">Motherboard</a></td>
+                <td>
+                    <select name="mb" id="">
+                        <option value="">None Selected</option>
+                    </select>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="Comparison.html">CPU</a></td>
+                <td>
+                    <select name="cpu" id="">
+                        <option value="">None Selected</option>
+                    </select>
+                </td>
+                <td></td>
+                <td>
+                    <div class="status uncompatiable"> ✖ </div>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="Comparison.html">CPU Cooler</a></td>
+                <td>
+                    <select name="cooler" id="">
+                        <option value="">None Selected</option>
+                    </select>
+                </td>
+                <td></td>
+                <td>
+                    <div class="status compatiable"> ✔ </div>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="Comparison.html">Memory</a></td>
+                <td>
+                    <select name="mem" id="">
+                        <option value="">None Selected</option>
+                    </select>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="Comparison.html">Video Card</a></td>
+                <td>
+                    <select name="vc" id="">
+                        <option value="">None Selected</option>
+                    </select>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><a href="Comparison.html">Storage</a></td>
+                <td>
+                    <select name="store" id="">
+                        <option value="">None Selected</option>
+                    </select>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
