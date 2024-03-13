@@ -23,6 +23,8 @@
             </nav>
         </div>
     </header>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
     <h1>Choose Your Parts</h1>
     <table>
         <thead>
@@ -37,21 +39,21 @@
             <tr>
                 <td><a href="Comparison.html">Motherboard</a></td>
                 <td>
-                    <select name="mb" id="">
-                        <option value="">None Selected</option>
+                    <select v-model="selectedMotherboard">
+                        <option v-for="mb in motherboards" :value="mb.price">{{ mb.name }}</option>
                     </select>
                 </td>
-                <td></td>
+                <td>{{ selectedMotherboard }}</td>
                 <td></td>
             </tr>
             <tr>
                 <td><a href="Comparison.html">CPU</a></td>
                 <td>
-                    <select name="cpu" id="">
-                        <option value="">None Selected</option>
+                    <select v-model="selectedCPU">
+                        <option v-for="cpu in CPUs" :value="cpu.price">{{ cpu.name }}</option>
                     </select>
                 </td>
-                <td></td>
+                <td>{{ selectedCPU }}</td>
                 <td>
                     <div class="status uncompatiable"> ✖ </div>
                 </td>
@@ -59,11 +61,11 @@
             <tr>
                 <td><a href="Comparison.html">CPU Cooler</a></td>
                 <td>
-                    <select name="cooler" id="">
-                        <option value="">None Selected</option>
+                    <select v-model="selectedCooler">
+                        <option v-for="cooler in coolers" :value="cooler.price">{{ cooler.name }}</option>
                     </select>
                 </td>
-                <td></td>
+                <td>{{ selectedCooler }}</td>
                 <td>
                     <div class="status compatiable"> ✔ </div>
                 </td>
@@ -71,36 +73,108 @@
             <tr>
                 <td><a href="Comparison.html">Memory</a></td>
                 <td>
-                    <select name="mem" id="">
-                        <option value="">None Selected</option>
+                    <select v-model="selectedMemory">
+                        <option v-for="mem in memory" :value="mem.price">{{ mem.name }}</option>
                     </select>
                 </td>
-                <td></td>
+                <td>{{ selectedMemory }}</td>
                 <td></td>
             </tr>
             <tr>
                 <td><a href="Comparison.html">Video Card</a></td>
                 <td>
-                    <select name="vc" id="">
-                        <option value="">None Selected</option>
+                    <select v-model="selectedGPU">
+                        <option v-for="gpu in GPUs" :value="gpu.price">{{ gpu.name }}</option>
                     </select>
                 </td>
-                <td></td>
+                <td>{{ selectedGPU }}</td>
                 <td></td>
             </tr>
             <tr>
                 <td><a href="Comparison.html">Storage</a></td>
                 <td>
-                    <select name="store" id="">
-                        <option value="">None Selected</option>
+                    <select v-model="selectedStorage">
+                        <option v-for="store in storage" :value="store.price">{{ store.name }}</option>
                     </select>
                 </td>
-                <td></td>
+                <td>{{ selectedStorage }}</td>
                 <td></td>
             </tr>
             </tr>
         </tbody>
     </table>
+    <p>Total Price: {{ totalPrice }}</p>
+</div>
+<script>
+    const App = {
+        data() {
+            return {
+            motherboards: [
+                {name: 'mb 1', price: 300},
+                {name: 'mb 2', price: 360},
+                {name: 'mb 3', price: 180},
+            ],
+            selectedMotherboard: null,
+            CPUs: [
+                {name: 'cpu 1', price: 250},
+                {name: 'cpu 2', price: 200},
+                {name: 'cpu 3', price: 195},                
+            ],
+            selectedCPU: null,
+            coolers: [
+                {name: 'cooler 1', price: 120},
+                {name: 'cooler 2', price: 200},
+                {name: 'cooler 3', price: 250},
+            ],
+            selectedCooler: null,
+            memory: [
+                {name: 'memory 1', price: 100},
+                {name: 'memory 2', price: 150},
+                {name: 'memory 3', price: 200},
+            ],
+            selectedMemory: null,
+            GPUs: [
+                {name: 'gpu 1', price: 400},  
+                {name: 'gpu 2', price: 240},
+                {name: 'gpu 3', price: 260},
+            ],
+            selectedGPU: null,
+            storage: [
+                {name: 'storage 1', price: 120},
+                {name: 'storage 2', price: 150},
+                {name: 'storage 3', price: 80},
+            ],
+            selectedStorage: null,
+            };
+        },
+        computed: {
+            totalPrice() {
+                let total = 0;
+                if (this.selectedMotherboard !== null) {
+                    total += this.selectedMotherboard
+                }
+                if (this.selectedCPU !== null) {
+                    total += this.selectedCPU
+                }
+                if (this.selectedCooler !== null) {
+                    total += this.selectedCooler
+                }
+                if (this.selectedGPU !== null) {
+                    total += this.selectedGPU
+                }
+                if (this.selectedMemory !== null) {
+                    total += this.selectedMemory
+                }
+                if (this.selectedStorage !== null) {
+                    total += this.selectedStorage
+                }
+                return total;
+            }
+        }
+    };
+
+    Vue.createApp(App).mount('#app');
+</script>
 
 </body>
 
