@@ -156,7 +156,7 @@ exports.getRam = functions.https.onRequest((request, response) => {
             return;
         }
         caseSnapshot.forEach(doc => {
-            //get names of psu from db using query
+            //get names of ram from db using query
             if (request.query.Name) {
                 if (request.query.Name == doc.data().Name) {
                     ramToReturn.push(doc.data());
@@ -182,7 +182,7 @@ exports.getStorage = functions.https.onRequest((request, response) => {
             return;
         }
         caseSnapshot.forEach(doc => {
-            //get names of psu from db using query
+            //get names of Storage from db using query
             if (request.query.Name) {
                 if (request.query.Name == doc.data().Name) {
                     storageToReturn.push(doc.data());
