@@ -156,7 +156,7 @@ exports.getRam = functions.https.onRequest((request, response) => {
             return;
         }
         caseSnapshot.forEach(doc => {
-            //get names of ram from db using query
+            //get names of psu from db using query
             if (request.query.Name) {
                 if (request.query.Name == doc.data().Name) {
                     ramToReturn.push(doc.data());
@@ -175,14 +175,14 @@ exports.getRam = functions.https.onRequest((request, response) => {
 exports.getStorage = functions.https.onRequest((request, response) => {
     // 1. Connect to our Firestore database
     let storageToReturn = []
-    admin.firestore().collection('Ram').get().then((storageSnapshot) => {
+    admin.firestore().collection('Storage').get().then((storageSnapshot) => {
         if (storageSnapshot.empty) {
             console.log('No matching documents.');
             response.send('No data in database');
             return;
         }
         caseSnapshot.forEach(doc => {
-            //get names of Storage from db using query
+            //get names of psu from db using query
             if (request.query.Name) {
                 if (request.query.Name == doc.data().Name) {
                     storageToReturn.push(doc.data());
