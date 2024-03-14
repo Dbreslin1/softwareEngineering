@@ -109,41 +109,17 @@
     const App = {
         data() {
             return {
-            motherboards: [
-                {name: 'mb 1', price: 300},
-                {name: 'mb 2', price: 360},
-                {name: 'mb 3', price: 180},
-            ],
+            motherboards: [],
             selectedMotherboard: null,
-            CPUs: [
-                {name: 'cpu 1', price: 250},
-                {name: 'cpu 2', price: 200},
-                {name: 'cpu 3', price: 195},                
-            ],
+            CPUs: [],
             selectedCPU: null,
-            coolers: [
-                {name: 'cooler 1', price: 120},
-                {name: 'cooler 2', price: 200},
-                {name: 'cooler 3', price: 250},
-            ],
+            coolers: [],
             selectedCooler: null,
-            memory: [
-                {name: 'memory 1', price: 100},
-                {name: 'memory 2', price: 150},
-                {name: 'memory 3', price: 200},
-            ],
+            memory: [],
             selectedMemory: null,
-            GPUs: [
-                {name: 'gpu 1', price: 400},  
-                {name: 'gpu 2', price: 240},
-                {name: 'gpu 3', price: 260},
-            ],
+            GPUs: [],
             selectedGPU: null,
-            storage: [
-                {name: 'storage 1', price: 120},
-                {name: 'storage 2', price: 150},
-                {name: 'storage 3', price: 80},
-            ],
+            storage: [],
             selectedStorage: null,
             };
         },
@@ -170,6 +146,41 @@
                 }
                 return total;
             }
+        },
+        methods: {
+            fetchData(url) {
+                return fetch(url)
+                    .then(response => response.json())
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                    });
+            }
+        },
+        mounted() {
+            this.fetchData('http://127.0.0.1:5001/ct216-project-57225/us-central1/getMotherboard')
+                .then(data => {
+                    this.motherboards = data;
+                });
+            this.fetchData('http://127.0.0.1:5001/ct216-project-57225/us-central1/getCpu')
+                .then(data => {
+                    this.CPUs = data;
+                });
+            this.fetchData('http://127.0.0.1:5001/ct216-project-57225/us-central1/getRam')
+                .then(data => {
+                    this.ram = data;
+                });
+            this.fetchData('http://127.0.0.1:5001/ct216-project-57225/us-central1/getPsu')
+                .then(data => {
+                    this.psu = data;
+                });
+            this.fetchData('http://127.0.0.1:5001/ct216-project-57225/us-central1/getGpu')
+                .then(data => {
+                    this.GPUs = data;
+                });
+            this.fetchData('http://127.0.0.1:5001/ct216-project-57225/us-central1/getStorage')
+                .then(data => {
+                    this.storage = data;
+                });
         }
     };
 
