@@ -11,7 +11,23 @@ const { onRequest } = require("firebase-functions/v2/https");
 const logger = require("firebase-functions/logger");
 const admin = require("firebase-admin")
 const functions = require("firebase-functions")
-admin.initializeApp()
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBa09ABvbjGW0sAK0xHcJknr1QQQgx4_ug",
+  authDomain: "ct216-project-57225.firebaseapp.com",
+  projectId: "ct216-project-57225",
+  storageBucket: "ct216-project-57225.appspot.com",
+  messagingSenderId: "33393096037",
+  appId: "1:33393096037:web:c0d77b7619216bdd1fdd8c"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
