@@ -31,13 +31,13 @@ exports.getCpu = functions.https.onRequest((request, response) => {
         query = query.where('Name', '==', request.query.Name);
     }
     if (request.query.Cache) {
-        query = query.where('Cache', '==', request.query.Cache);
+        query = query.where('Cache', '==', parseInt(request.query.Cache));
     }
     if (request.query.Cores) {
         query = query.where('Cores', '==', parseInt(request.query.Cores));
     }
     if (request.query.IntegratedGraphics) {
-        query = query.where('IntegratedGraphics', '==', request.query.IntegratedGraphics);
+        query = query.where('Integrated Graphics', '==', boolean(request.query.IntegratedGraphics));
     }
     if (request.query.Price) {
         query = query.where('Price', '==', parseFloat(request.query.Price));
@@ -124,7 +124,7 @@ exports.getCase = functions.https.onRequest((request, response) => {
 exports.getGpu = functions.https.onRequest((request, response) => {
     // 1. Connect to our Firestore database
     let gpusToReturn = []
-    let query = admin.firestore().collection('Gpu');
+    let query = admin.firestore().collection('GPU');
 
     // Adding filters based on query parameters
     if (request.query.Name) {
@@ -137,7 +137,7 @@ exports.getGpu = functions.https.onRequest((request, response) => {
         query = query.where('DirectX', '==', parseFloat(request.query.DirectX));
     }
     if (request.query.GDDR) {
-        query = query.where('GDDR', '==', parseFloat(request.query.GDDR));
+        query = query.where('GDDR', '==', parseInt(request.query.GDDR));
     }
     if (request.query['Output Ports']) {
         query = query.where('OutputPorts', '==', parseInt(request.query['Output Ports']));
@@ -254,7 +254,7 @@ exports.getMotherboard = functions.https.onRequest((request, response) => {
 exports.getPsu = functions.https.onRequest((request, response) => {
     // 1. Connect to our Firestore database
     let psusToReturn = []
-    admin.firestore().collection('Psu').get().then((psuSnapshot) => {
+    admin.firestore().collection('PSU').get().then((psuSnapshot) => {
         if (psuSnapshot.empty) {
             console.log('No matching documents.');
             response.send('No data in database');
@@ -280,7 +280,7 @@ exports.getPsu = functions.https.onRequest((request, response) => {
 exports.getRam = functions.https.onRequest((request, response) => {
     // 1. Connect to our Firestore database
     let ramToReturn = []
-    admin.firestore().collection('Ram').get().then((ramSnapshot) => {
+    admin.firestore().collection('RAM').get().then((ramSnapshot) => {
         if (ramSnapshot.empty) {
             console.log('No matching documents.');
             response.send('No data in database');
