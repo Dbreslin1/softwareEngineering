@@ -10,11 +10,12 @@
 const { onRequest } = require("firebase-functions/v2/https");
 const logger = require("firebase-functions/logger");
 const admin = require("firebase-admin")
-const functions = require("firebase-functions")
+// const functions = require("firebase-functions")
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+// const { initializeApp } = require("firebase/app");
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -27,17 +28,17 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = admin.initializeApp(firebaseConfig);
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
 
-exports.helloWorld = onRequest((request, response) => {
-    logger.info("Hello logs!", { structuredData: true });
-    response.send("Hello from Firebase!");
-});
+// exports.helloWorld = onRequest({cors: true}, (request, response) => {
+//     logger.info("Hello logs!", { structuredData: true });
+//     response.send("Hello from Firebase!");
+// });
 
-exports.getCpu = functions.https.onRequest((request, response) => {
+exports.getCpu = onRequest({cors: true}, (request, response) => {
     // 1. Connect to our Firestore database
     let cpusToReturn = []
     let query = admin.firestore().collection('CPU');
@@ -87,7 +88,7 @@ exports.getCpu = functions.https.onRequest((request, response) => {
 });
 
 //get cases
-exports.getCase = functions.https.onRequest((request, response) => {
+exports.getCase = onRequest({cors: true}, (request, response) => {
     // 1. Connect to our Firestore database
     let casesToReturn = []
     let query = admin.firestore().collection('Case');
@@ -137,7 +138,7 @@ exports.getCase = functions.https.onRequest((request, response) => {
 });
 
 //get gpus
-exports.getGpu = functions.https.onRequest((request, response) => {
+exports.getGpu = onRequest({cors: true}, (request, response) => {
     // 1. Connect to our Firestore database
     let gpusToReturn = []
     let query = admin.firestore().collection('GPU');
@@ -190,7 +191,7 @@ exports.getGpu = functions.https.onRequest((request, response) => {
 });
 
 //get motherboards
-exports.getMotherboard = functions.https.onRequest((request, response) => {
+exports.getMotherboard = onRequest({cors: true}, (request, response) => {
     // 1. Connect to our Firestore database
     let motherboardsToReturn = []
     let query = admin.firestore().collection('Motherboard');
@@ -267,7 +268,7 @@ exports.getMotherboard = functions.https.onRequest((request, response) => {
 });
 
 //get psus
-exports.getPsu = functions.https.onRequest((request, response) => {
+exports.getPsu = onRequest({cors: true}, (request, response) => {
     // 1. Connect to our Firestore database
     let psusToReturn = []
     admin.firestore().collection('PSU').get().then((psuSnapshot) => {
@@ -293,7 +294,7 @@ exports.getPsu = functions.https.onRequest((request, response) => {
 });
 
 //get RAM
-exports.getRam = functions.https.onRequest((request, response) => {
+exports.getRam = onRequest({cors: true}, (request, response) => {
     // 1. Connect to our Firestore database
     let ramToReturn = []
     admin.firestore().collection('RAM').get().then((ramSnapshot) => {
@@ -319,7 +320,7 @@ exports.getRam = functions.https.onRequest((request, response) => {
 });
 
 //get Storage
-exports.getStorage = functions.https.onRequest((request, response) => {
+exports.getStorage = onRequest({cors: true}, (request, response) => {
     // 1. Connect to our Firestore database
     let storageToReturn = []
     admin.firestore().collection('Storage').get().then((storageSnapshot) => {
