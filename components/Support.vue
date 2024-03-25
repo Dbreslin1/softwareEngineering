@@ -1,8 +1,8 @@
 <template>
+  <body>
   <div>
-    <section>
-      <div class="curve"></div>
-    </section>
+    <header>
+      <nav>
     <div>
         <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
         <a router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></a>
@@ -12,6 +12,8 @@
           <li><router-link to="/Support"><a>Support</a></router-link></li>
         </ul>
     </div>
+  </nav>
+  </header>
     <div class="contact-info">
       <h2>Contact Us</h2>
       <p>Email: support@gmail.com</p>
@@ -27,6 +29,8 @@
       </form>
     </div>
   </div>
+      
+</body>
 </template>
 
 <script setup>
