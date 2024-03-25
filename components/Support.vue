@@ -2,8 +2,8 @@
   <body>
   <div>
     <header>
-      <nav>
     <div>
+      <nav>
         <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
         <a router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></a>
         <ul>
@@ -11,8 +11,8 @@
           <li><router-link to="/Comparison"><a>Comparison</a></router-link></li>
           <li><router-link to="/Support"><a>Support</a></router-link></li>
         </ul>
+      </nav>
     </div>
-  </nav>
   </header>
     <div class="contact-info">
       <h2>Contact Us</h2>
