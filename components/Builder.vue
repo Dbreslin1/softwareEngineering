@@ -1,102 +1,95 @@
 <template>
   <body>
-  <div>
-    <header>
-      <div>
-        <nav>
-          <router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
-          <ul>
-            <li><router-link to="/Builder" draggable="false">Builder</router-link></li>
-            <li><router-link to="/Comparison" draggable="false">Comparison</router-link></li>
-            <li><router-link to="/Support" draggable="false">Support</router-link></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-    <h1>Choose Your Parts</h1>
-    <table>
-      <thead>
-        <tr>
-          <th style="width: 20%">Component</th>
-          <th>Selected</th>
-          <th style="width: 100px;">Price</th>
-          <th style="width: 100px;">Compatibility</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr> 
-          <td><router-link to="/Comparison">Motherboard</router-link></td>
-          <td>
-            <select name="mb" id="">
-              <option value="">None Selected</option>
-            </select>
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><router-link to="/Comparison">CPU</router-link></td>
-          <td>
-            <select name="cpu" id="">
-              <option value="">None Selected</option>
-            </select>
-          </td>
-          <td></td>
-          <td>
-            <div class="status uncompatible"> ✖ </div>
-          </td>
-        </tr>
-        <tr>
-          <td><router-link to="/Comparison">CPU Cooler</router-link></td>
-          <td>
-            <select name="cooler" id="">
-              <option value="">None Selected</option>
-            </select>
-          </td>
-          <td></td>
-          <td>
-            <div class="status compatible"> ✔ </div>
-          </td>
-        </tr>
-        <tr>
-          <td><router-link to="/Comparison">Memory</router-link></td>
-          <td>
-            <select name="mem" id="">
-              <option value="">None Selected</option>
-            </select>
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><router-link to="/Comparison">Video Card</router-link></td>
-          <td>
-            <select name="vc" id="">
-              <option value="">None Selected</option>
-            </select>
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><router-link to="/Comparison">Storage</router-link></td>
-          <td>
-            <select name="store" id="">
-              <option value="">None Selected</option>
-            </select>
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</body>
+    <div>
+      <header>
+        <div>
+          <nav>
+            <router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
+            <ul>
+              <li><router-link to="/Builder" draggable="false">Builder</router-link></li>
+              <li><router-link to="/Comparison" draggable="false">Comparison</router-link></li>
+              <li><router-link to="/Support" draggable="false">Support</router-link></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <h1>Choose Your Parts</h1>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Component</th>
+            <th>Selected</th>
+            <th style="width: 100px;">Price</th>
+            <th style="width: 100px;">Compatibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr> 
+            <td><router-link to="/Comparison">Motherboard</router-link></td>
+            <td>
+              <select name="mb" id="">
+                <option value="">None Selected</option>
+                <option v-for="mb in motherboards" :key="mb.id" :value="mb.id">{{ mb.Name }}</option>
+              </select>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><router-link to="/Comparison">CPU</router-link></td>
+            <td>
+              <select name="cpu" id="cpuSelect">
+                <option value="">None Selected</option>
+                <option v-for="cpu in cpus" :key="cpu.id" :value="cpu.id">{{ cpu.Name }}</option>
+              </select>
+            </td>
+            <td></td>
+            <td>
+              <div class="status uncompatible"> ✖ </div>
+            </td>
+          </tr>
+          <!-- Other component rows -->
+        </tbody>
+      </table>
+    </div>
+  </body>
 </template>
 
 <script>
 export default {
-  name: 'ChooseYourParts'
+  name: 'ChooseYourParts',
+  data() {
+    return {
+      cpus: [],
+      motherboards: []
+    };
+  },
+  mounted() {
+    this.fetchCPUs();
+    this.fetchMotherboards();
+  },
+  methods: {
+    async fetchCPUs() {
+      try {
+        const response = await fetch('https://getcpu-igki44h7vq-uc.a.run.app');
+        const data = await response.json();
+        console.log(data); // Log the response data to the console
+        this.cpus = data; // Assuming data is an array of CPU objects with 'id' and 'Name' properties
+      } catch (error) {
+        console.error('Error fetching CPUs:', error);
+      }
+    },
+    async fetchMotherboards() {
+      try {
+        const response = await fetch('https://getmotherboard-igki44h7vq-uc.a.run.app');
+        const data = await response.json();
+        console.log(data); // Log the response data to the console
+        this.motherboards = data; // Assuming data is an array of motherboard objects with 'id' and 'Name' properties
+      } catch (error) {
+        console.error('Error fetching motherboards:', error);
+      }
+    }
+  }
 }
 </script>
 
