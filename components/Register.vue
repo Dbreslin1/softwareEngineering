@@ -29,7 +29,10 @@
           <label for="lName">Last Name: </label>
           <input type="text" class="form-control" id="lName" v-model="lnameInp" placeholder="Last Name">
         </div>
-        <button type="submit" class="btn btn-primary" @click="registerUser">Create New User</button> 
+        <button type="submit" class="btn btn-primary" @click="registerUser">Create New User</button>
+        <router-link v-if="error" to="/Register"><button type="button" class="btn btn-danger me-2">Error! Try Again</button></router-link>
+        <router-link v-else to="/Builder"><button type="button" class="btn btn-danger me-2">User Registered Successfully</button></router-link>
+
         <router-link to="/Login"><button class="btn btn-primary me-2">Sign In</button></router-link>
     </div>
    </div>
@@ -43,13 +46,14 @@ import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.9.0
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 
 export default {
-  data() {
+  name: "Register", data() {
     return {
-      emailInp: '',
-      passwordInp: '',
-      fnameInp: '',
-      lnameInp: '',
-      userRegistered: false
+      emailInp: "",
+      passwordInp: "",
+      fnameInp: "",
+      lnameInp: "",
+      userRegistered: false,
+      error: false
     };
   },
   methods: {
@@ -71,12 +75,16 @@ export default {
 
       createUserWithEmailAndPassword(auth, this.emailInp, this.passwordInp)
         .then((credentials) => {
+          
           set(ref(db, 'UsersAuthList/' + credentials.user.uid),{
             fname: this.fnameInp,
             lname: this.lnameInp
+            
           });
+          this.$router.push({path: '/'})
         })
         .catch((error) => {
+          this.error = true;
           alert(error.message);
           console.log(error.code);
           console.log(error.message);
