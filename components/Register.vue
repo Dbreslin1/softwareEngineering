@@ -1,28 +1,38 @@
 <template>
-  <div class="w-25 m-4">
-    <h2 class="mb-3">Register User</h2>
-
-    <div class="form-floating mb-3">
-      <input type="email" class="form-control" v-model="emailInp" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
+   <div>
+     <nav>
+       <router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
+       <ul>
+         <li><router-link to="/Builder">Builder</router-link></li>
+         <li><router-link to="/Comparison">Comparison</router-link></li>
+         <li><router-link to="/Support">Support</router-link></li>
+         <li><router-link to="/Login"><a>Login</a></router-link></li>
+         <li><router-link to="/Register"><a>Register</a></router-link></li>
+       </ul>
+     </nav>
+    <div id="MainForm" class="w-25 m-4">
+        <h2 class="mb-3">Register User</h2>
+        <div class="form-floating mb-3">
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" id="email" v-model="email" placeholder="name@example.com">
+        </div>
+        <div class="form-floating mb-3">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" id="password" v-model="password" placeholder="Password">
+        </div>
+        <div class="form-floating mb-3">
+          <label for="fName">First Name:</label>
+          <input type="text" class="form-control" id="fName" v-model="fName" placeholder="First Name">
+        </div>
+        <div class="form-floating mb-3">
+          <label for="lName">Last Name:</label>
+          <input type="text" class="form-control" id="lName" v-model="lName" placeholder="Last Name">
+        </div>
+        <button type="submit" class="btn btn-primary" @click="registerUser">Create New User</button> 
+        <router-link to="/Login"><button class="btn btn-primary me-2">Sign In</button></router-link>
     </div>
-    <div class="form-floating mb-3">
-      <input type="password" class="form-control" v-model="passwordInp" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input type="text" class="form-control" v-model="fnameInp" placeholder="First Name">
-      <label for="floatingPassword">First Name</label>
-    </div>
-    <div class="form-floating mb-3">
-      <input type="text" class="form-control" v-model="lnameInp" placeholder="Last Name">
-      <label for="floatingPassword">Last Name</label>
-    </div>
-
-    <button @click="registerUser" class="btn btn-primary" style="float: right;">Create New User</button>
-    <a href="/Login"><button type="button" style="float: right;" class="btn btn-primary me-2">Sign In</button></a>
-  </div>
-</template>
+   </div>
+ </template>
 
 <script>
 // Import the functions you need from the SDKs you need
@@ -72,3 +82,83 @@ export default {
   }
 };
 </script>
+<style scoped>
+/* Component-specific styles go here */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    border: 0px;
+    height: 100vh;
+    background-color: #3f3f3f;
+    overflow: hidden;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    padding: 20px 10%;
+    background-color: #2f2e2d;
+}
+
+#homenav {
+    padding-bottom: 100px;
+}
+
+nav .menu {
+    width: 25px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+nav .logo {
+    width: 60px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+nav ul {
+    flex: 1;
+    text-align: right;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+
+}
+
+nav ul li a:hover {
+    color: #fadf7f;
+}
+
+h1 {
+    color: #ffffff;
+    background-color: #294d4a;
+    margin-top: 0px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 140%;
+    text-align: center;
+}
+
+.text-container h2 {
+    color: #ffffff;
+    font-size: 700%;
+    font-family: 'Anton', sans-serif;
+    line-height: 100%;
+    margin-left: 10%;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    position: relative; /* Add position relative */
+    z-index: 1; /* Ensure the h2 text has a higher z-index */
+}
+</style>
