@@ -1,4 +1,5 @@
 <template>
+  <body>
    <div>
      <nav>
        <router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
@@ -7,31 +8,32 @@
          <li><router-link to="/Comparison">Comparison</router-link></li>
          <li><router-link to="/Support">Support</router-link></li>
          <li><router-link to="/Login"><a>Login</a></router-link></li>
-         <li><router-link to="/Register"><a>Register</a></router-link></li>
+         <li v-if="!userRegistered"><router-link to="/Register"><a>Register</a></router-link></li>
        </ul>
      </nav>
     <div id="MainForm" class="w-25 m-4">
         <h2 class="mb-3">Register User</h2>
         <div class="form-floating mb-3">
-          <label for="email">Email address:</label>
+          <label for="email">Email address: </label>
           <input type="email" class="form-control" id="email" v-model="emailInp" placeholder="name@example.com">
         </div>
         <div class="form-floating mb-3">
-          <label for="password">Password:</label>
+          <label for="password">Password: </label>
           <input type="password" class="form-control" id="password" v-model="passwordInp" placeholder="Password">
         </div>
         <div class="form-floating mb-3">
-          <label for="fName">First Name:</label>
+          <label for="fName">First Name: </label>
           <input type="text" class="form-control" id="fName" v-model="fnameInp" placeholder="First Name">
         </div>
         <div class="form-floating mb-3">
-          <label for="lName">Last Name:</label>
+          <label for="lName">Last Name: </label>
           <input type="text" class="form-control" id="lName" v-model="lnameInp" placeholder="Last Name">
         </div>
         <button type="submit" class="btn btn-primary" @click="registerUser">Create New User</button> 
         <router-link to="/Login"><button class="btn btn-primary me-2">Sign In</button></router-link>
     </div>
    </div>
+  </body>
  </template>
  
  <script>
@@ -46,7 +48,8 @@ export default {
       emailInp: '',
       passwordInp: '',
       fnameInp: '',
-      lnameInp: ''
+      lnameInp: '',
+      userRegistered: false
     };
   },
   methods: {
@@ -78,6 +81,7 @@ export default {
           console.log(error.code);
           console.log(error.message);
         });
+        this.userRegistered = true;
     }
   }
 };
@@ -98,68 +102,78 @@ body {
 }
 
 nav {
-    display: flex;
-    align-items: center;
-    padding: 20px 10%;
-    background-color: #2f2e2d;
-}
-
-#homenav {
-    padding-bottom: 100px;
-}
-
-nav .menu {
-    width: 25px;
-    margin-right: 20px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 20px 10%;
+  background-color: #2f2e2d;
 }
 
 nav .logo {
-    width: 60px;
-    cursor: pointer;
-    z-index: 5;
+  width: 60px;
+  cursor: pointer;
+  z-index: 5;
 }
 
 nav ul {
-    flex: 1;
-    text-align: right;
+  flex: 1;
+  text-align: right;
 }
 
 nav ul li {
-    display: inline-block;
-    list-style: none;
-    margin: 0 20px;
+  display: inline-block;
+  list-style: none;
+  margin: 0 20px;
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: white;
-
+  text-decoration: none;
+  color: white;
 }
 
 nav ul li a:hover {
-    color: #fadf7f;
+  color: #fadf7f;
 }
 
-h1 {
-    color: #ffffff;
-    background-color: #294d4a;
-    margin-top: 0px;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    font-size: 140%;
-    text-align: center;
+/* Form container styles */
+#MainForm {
+  width: 20%;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-.text-container h2 {
-    color: #ffffff;
-    font-size: 700%;
-    font-family: 'Anton', sans-serif;
-    line-height: 100%;
-    margin-left: 10%;
-    margin-top: 0px;
-    margin-bottom: 30px;
-    position: relative; /* Add position relative */
-    z-index: 1; /* Ensure the h2 text has a higher z-index */
+/* Form input styles */
+.form-floating {
+  margin-bottom: 20px;
+}
+
+.form-floating label {
+  color: #495057;
+}
+
+.form-control {
+  border-radius: 5px;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-primary.me-2 {
+  margin-right: 10px;
 }
 </style>
