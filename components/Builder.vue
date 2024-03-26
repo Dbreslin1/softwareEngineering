@@ -48,6 +48,61 @@
               <div class="status uncompatible"> ✖ </div>
             </td>
           </tr>
+          <tr> 
+            <td><router-link to="/Comparison">Case</router-link></td>
+            <td>
+              <select name="case" id="" v-model="selectedCase">
+                <option value="">None Selected</option>
+                <option v-for="c in cases" :key="c.id" :value="c">{{ c.Name }}</option>
+              </select>
+            </td>
+            <td>{{ selectedCase ? selectedCase.Price : '' }}</td>
+            <td></td>
+          </tr>
+          <tr> 
+            <td><router-link to="/Comparison">GPU</router-link></td>
+            <td>
+              <select name="gpu" id="" v-model="selectedGpu" >
+                <option value="">None Selected</option>
+                <option v-for="g in gpus" :key="g.id" :value="g">{{ g.Name }}</option>
+              </select>
+              </td>
+              <td>{{ selectedGpu ? selectedGpu.Price : '' }}</td> <!-- Make sure selectedGpuPrice is correctly bound here -->
+            <td></td>
+          </tr>
+          <tr> 
+            <td><router-link to="/Comparison">RAM</router-link></td>
+            <td>
+              <select name="ram" id="">
+                <option value="">None Selected</option>
+                <option v-for="r in rams" :key="r.id" :value="r.id">{{ r.Name }}</option>
+              </select>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr> 
+            <td><router-link to="/Comparison">Storage</router-link></td>
+            <td>
+              <select name="storage" id="">
+                <option value="">None Selected</option>
+                <option v-for="s in storages" :key="s.id" :value="s.id">{{ s.Name }}</option>
+              </select>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr> 
+            <td><router-link to="/Comparison">PSU</router-link></td>
+            <td>
+              <select name="psu" id="">
+                <option value="">None Selected</option>
+                <option v-for="p in psus" :key="p.id" :value="p.id">{{ p.Name }}</option>
+              </select>
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
           <!-- Other component rows -->
         </tbody>
       </table>
@@ -61,12 +116,25 @@ export default {
   data() {
     return {
       cpus: [],
-      motherboards: []
+      motherboards: [],
+      cases: [],
+      gpus: [],
+      rams: [],
+      storages: [],
+      psus: [],
+      selectedGpu: null,  // Initialize selectedGpu to null
+      selectedCase: null  // Initialize selectedGpu to null
+      
     };
   },
   mounted() {
     this.fetchCPUs();
     this.fetchMotherboards();
+    this.fetchCases();
+    this.fetchGpus();
+    this.fetchRAM();
+    this.fetchStorages();
+    this.fetchPsus();
   },
   methods: {
     async fetchCPUs() {
@@ -88,9 +156,65 @@ export default {
       } catch (error) {
         console.error('Error fetching motherboards:', error);
       }
-    }
-  }
+    },
+    async fetchCases() {
+      try {
+        const response = await fetch('https://getcase-igki44h7vq-uc.a.run.app');
+        const data = await response.json();
+        console.log(data); // Log the response data to the console
+        this.cases = data; // Assuming data is an array of cases objects with 'id' and 'Name' properties
+      } catch (error) {
+        console.error('Error fetching Cases:', error);
+      }
+    },
+    async fetchGpus() {
+      try {
+        const response = await fetch('https://getgpu-igki44h7vq-uc.a.run.app');
+        const data = await response.json();
+        console.log(data); // Log the response data to the console
+        this.gpus = data; // Assuming data is an array of Gpus objects with 'id' and 'Name' properties
+      } catch (error) {
+        console.error('Error fetching Gpus:', error);
+      }
+    },
+    
+    
+    async fetchRAM() {
+      try {
+        const response = await fetch('https://getram-igki44h7vq-uc.a.run.app');
+        const data = await response.json();
+        console.log(data); // Log the response data to the console
+        this.rams = data; // Assuming data is an array of rams objects with 'id' and 'Name' properties
+      } catch (error) {
+        console.error('Error fetching Rams:', error);
+      }
+    },
+    async fetchStorages() {
+      try {
+        const response = await fetch('https://getstorage-igki44h7vq-uc.a.run.app');
+        const data = await response.json();
+        console.log(data); // Log the response data to the console
+        this.storages = data; // Assuming data is an array of storages objects with 'id' and 'Name' properties
+      } catch (error) {
+        console.error('Error fetching Storages:', error);
+      }
+    },
+    async fetchPsus() {
+      try {
+        const response = await fetch('https://getpsu-igki44h7vq-uc.a.run.app');
+        const data = await response.json();
+        console.log(data); // Log the response data to the console
+        this.psus = data; // Assuming data is an array of Psus objects with 'id' and 'Name' properties
+      } catch (error) {
+        console.error('Error fetching Psus:', error);
+      }
+    },
+  },
+  
+  
+ 
 }
+
 </script>
 
 <style scoped>
