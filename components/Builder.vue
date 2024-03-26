@@ -27,23 +27,23 @@
           <tr> 
             <td><router-link to="/Comparison">Motherboard</router-link></td>
             <td>
-              <select name="mb" id="">
+              <select name="mb" id="" v-model="selectedMotherboard">
                 <option value="">None Selected</option>
-                <option v-for="mb in motherboards" :key="mb.id" :value="mb.id">{{ mb.Name }}</option>
+                <option v-for="mb in motherboards" :key="mb.id" :value="mb">{{ mb.Name }}</option>
               </select>
             </td>
-            <td></td>
+            <td>{{ selectedMotherboard ? selectedMotherboard.Price : '' }}</td>
             <td></td>
           </tr>
           <tr>
             <td><router-link to="/Comparison">CPU</router-link></td>
             <td>
-              <select name="cpu" id="cpuSelect">
+              <select name="cpu" id="cpuSelect" v-model="selectedCpu">
                 <option value="">None Selected</option>
-                <option v-for="cpu in cpus" :key="cpu.id" :value="cpu.id">{{ cpu.Name }}</option>
+                <option v-for="cpu in cpus" :key="cpu.id" :value="cpu">{{ cpu.Name }}</option>
               </select>
             </td>
-            <td></td>
+            <td>{{ selectedCpu ? selectedCpu.Price : '' }}</td>
             <td>
               <div class="status uncompatible"> ✖ </div>
             </td>
@@ -73,34 +73,34 @@
           <tr> 
             <td><router-link to="/Comparison">RAM</router-link></td>
             <td>
-              <select name="ram" id="">
+              <select name="ram" id="" v-model="selectedRam">
                 <option value="">None Selected</option>
-                <option v-for="r in rams" :key="r.id" :value="r.id">{{ r.Name }}</option>
+                <option v-for="r in rams" :key="r.id" :value="r">{{ r.Name }}</option>
               </select>
             </td>
-            <td></td>
+            <td>{{ selectedRam ? selectedRam.Price : '' }}</td>
             <td></td>
           </tr>
           <tr> 
             <td><router-link to="/Comparison">Storage</router-link></td>
             <td>
-              <select name="storage" id="">
+              <select name="storage" id="" v-model="selectedStorage">
                 <option value="">None Selected</option>
-                <option v-for="s in storages" :key="s.id" :value="s.id">{{ s.Name }}</option>
+                <option v-for="s in storages" :key="s.id" :value="s">{{ s.Name }}</option>
               </select>
             </td>
-            <td></td>
+            <td>{{ selectedStorage ? selectedStorage.Price : '' }}</td>
             <td></td>
           </tr>
           <tr> 
             <td><router-link to="/Comparison">PSU</router-link></td>
             <td>
-              <select name="psu" id="">
+              <select name="psu" id="" v-model="SelectedPsu">
                 <option value="">None Selected</option>
-                <option v-for="p in psus" :key="p.id" :value="p.id">{{ p.Name }}</option>
+                <option v-for="p in psus" :key="p.id" :value="p">{{ p.Name }}</option>
               </select>
             </td>
-            <td></td>
+            <td>{{ SelectedPsu ? SelectedPsu.Price : '' }}</td>
             <td></td>
           </tr>
           <!-- Other component rows -->
@@ -122,9 +122,13 @@ export default {
       rams: [],
       storages: [],
       psus: [],
+      selectedMotherboard: null,
+      selectedCpu: null,
       selectedGpu: null,  // Initialize selectedGpu to null
-      selectedCase: null  // Initialize selectedGpu to null
-      
+      selectedCase: null,  // Initialize selectedGpu to null
+      selectedRam: null,
+      selectedStorage: null,
+      SelectedPsu: null
     };
   },
   mounted() {
