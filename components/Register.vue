@@ -14,27 +14,27 @@
         <h2 class="mb-3">Register User</h2>
         <div class="form-floating mb-3">
           <label for="email">Email address:</label>
-          <input type="email" class="form-control" id="email" v-model="email" placeholder="name@example.com">
+          <input type="email" class="form-control" id="email" v-model="emailInp" placeholder="name@example.com">
         </div>
         <div class="form-floating mb-3">
           <label for="password">Password:</label>
-          <input type="password" class="form-control" id="password" v-model="password" placeholder="Password">
+          <input type="password" class="form-control" id="password" v-model="passwordInp" placeholder="Password">
         </div>
         <div class="form-floating mb-3">
           <label for="fName">First Name:</label>
-          <input type="text" class="form-control" id="fName" v-model="fName" placeholder="First Name">
+          <input type="text" class="form-control" id="fName" v-model="fnameInp" placeholder="First Name">
         </div>
         <div class="form-floating mb-3">
           <label for="lName">Last Name:</label>
-          <input type="text" class="form-control" id="lName" v-model="lName" placeholder="Last Name">
+          <input type="text" class="form-control" id="lName" v-model="lnameInp" placeholder="Last Name">
         </div>
         <button type="submit" class="btn btn-primary" @click="registerUser">Create New User</button> 
         <router-link to="/Login"><button class="btn btn-primary me-2">Sign In</button></router-link>
     </div>
    </div>
  </template>
-
-<script>
+ 
+ <script>
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
@@ -82,6 +82,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 /* Component-specific styles go here */
 
