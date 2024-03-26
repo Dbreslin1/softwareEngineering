@@ -18,13 +18,13 @@
       <h2>Contact Us</h2>
       <p>Email: support@gmail.com</p>
       <p>Phone: 091 123 4567</p>
-      <p>Address: Random Building, Random Street, Galway</p>
+      <p>Address: Gav's Gaff, Gombeen Street, Ballyfa</p>
     </div>
     <div class="feedback-form">
       <h2>Send Feedback</h2>
       <form @submit.prevent="submitFeedback">
         <label for="feedback">Your Feedback:</label>
-        <textarea id="feedback" v-model="feedback" required></textarea>
+        <textarea id="feedback" v-model="feedbackData" required></textarea>
         <button type="submit">Send</button>
       </form>
     </div>
@@ -36,11 +36,29 @@
 <script setup>
   import { ref } from 'vue';
   
-  const feedback = ref('');
-  
+  const feedbackData = ref('');
+
   const submitFeedback = () => {
-    console.log('Feedback submitted:', feedback.value);
-    feedback.value = '';
+    fetch('https://submitfeedback-igki44h7vq-uc.a.run.app', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ feedback: feedbackData.value })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to submit feedback');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Feedback submitted successfully:', data);
+      feedbackData.value = ''; // Clear the feedback textarea after submission
+    })
+    .catch(error => {
+      console.error('Error submitting feedback:', error);
+    });
   };
 </script>
 
