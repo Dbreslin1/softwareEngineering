@@ -1,18 +1,32 @@
 <template>
-  <div class="container">
-      <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" v-model="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-              placeholder="Enter email">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  <body>
+    <div>
+      <nav>
+        <router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
+        <ul>
+          <li><router-link to="/Builder">Builder</router-link></li>
+          <li><router-link to="/Comparison">Comparison</router-link></li>
+          <li><router-link to="/Support">Support</router-link></li>
+          <li><router-link to="/Login"><a>Login</a></router-link></li>
+        </ul>
+      </nav>
+      <div id="MainForm" class="w-25 m-4">
+        <h2 class="mb-3">Login User</h2>
+        <div class="form-floating mb-3">
+          <label for="floatingInput">Email address: </label>
+          <input type="email" class="form-control" v-model="email" placeholder="name@example.com">
+        </div>
+        <div class="form-floating mb-3">
+          <label for="floatingPassword">Password: </label>
+          <input type="password" class="form-control" v-model="password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary" @click="login" style="float: left;">Login</button>
+        <router-link v-if="error" to="/Login"><button type="button" class="btn btn-danger me-2">Error! Try Again</button></router-link>
+        <router-link v-else to="/Register"><button type="button" style="float: left;" class="btn btn-primary me-2">Sign Up</button></router-link>
+
       </div>
-      <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" v-model="password" class="form-control" id="exampleInputPassword1"
-              placeholder="Password">
-      </div>
-      <button @click="login" class="btn btn-primary">Login</button>
-  </div>
+    </div>
+  </body>
 </template>
 
 <script>
@@ -24,7 +38,8 @@ export default {
   name: "Login", data() {
       return {
           email: "",
-          password: ""
+          password: "",
+          error: false
       }
   },
   methods: {
@@ -51,15 +66,15 @@ export default {
                   const user = userCredential.user;
                   console.log(user)
                   this.$router.push({path: '/'})
-                  // ...
+                  
               })
               .catch((error) => {
                   const errorCode = error.code; 
                   const errorMessage = error.message; 
-                  
+                  alert(error.message);
                   console.log(errorCode)
                   console.log(errorMessage)
-                  // ..          
+                            
               });
       }
   }
