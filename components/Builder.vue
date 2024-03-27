@@ -36,7 +36,7 @@
                 <option v-for="mb in motherboards" :key="mb.id" :value="mb">{{ mb.Name }}</option>
               </select>
             </td>
-            <td>{{ selectedMotherboard ? selectedMotherboard.Compatibility: '' }}</td>
+            <td>{{ selectedMotherboard ? selectedMotherboard.Price: '' }}</td>
           </tr>
           <tr>
             <td><router-link to="/Comparison">CPU</router-link></td>
