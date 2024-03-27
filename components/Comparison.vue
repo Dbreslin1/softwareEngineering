@@ -29,29 +29,48 @@
         <div v-if="selectedPart === 'CPU'">
           <div class="pcPart1details" v-if="pcPart1CPUDetails">
             <p>Cores: {{ pcPart1CPUDetails.Cores }}</p>
+            <hr>
             <p>Threads: {{ pcPart1CPUDetails.Threads }}</p>
+            <hr>
             <p>Cache: {{ pcPart1CPUDetails.Cache }}</p>
+            <hr>
             <p>TDP: {{ pcPart1CPUDetails.TDP }}</p>
+            <hr>
             <p>Speed: {{ pcPart1CPUDetails.Speed }}</p>
+            <hr>
             <p>Price: {{ pcPart1CPUDetails.Price }}</p>
+            <hr>
             <p>Name: {{ pcPart1CPUDetails.Name }}</p>
+            <hr>
             <p>Integrated Graphics: {{ pcPart1CPUDetails["Integrated Graphics"] }}</p>
+            <hr>
             <p>Compatibility: {{ pcPart1CPUDetails.Compatibility }}</p>
           </div>
          </div>
         <div v-if="selectedPart === 'Motherboard'">
-          <div class="pcPart1details" v-if="pcPart1MotherboardDetails">
+          <div class="motherBoardStyle" v-if="pcPart1MotherboardDetails">
             <p>Bluetooth: {{ pcPart1MotherboardDetails.Bluetooth }}</p>
+            <hr>
             <p>Chipset: {{ pcPart1MotherboardDetails.Chipset }}</p>
+            <hr>
             <p>Compatibility: {{ pcPart1MotherboardDetails.Compatibility }}</p>
+            <hr>
             <p>Ethernet: {{ pcPart1MotherboardDetails.Ethernet }}</p>
+            <hr>
             <p>Form Factor: {{ pcPart1MotherboardDetails.FormFactor }}</p>
+            <hr>
             <p>M.2 Ports: {{ pcPart1MotherboardDetails["M.2 Ports"] }}</p>
+            <hr>
             <p>Output Ports: {{ pcPart1MotherboardDetails["Output Ports"] }}</p>
+            <hr>
             <p>Price: {{ pcPart1MotherboardDetails.Price }}</p>
+            <hr>
             <p>RAM Slots: {{ pcPart1MotherboardDetails["RAM Slots"] }}</p>
+            <hr>
             <p>PCIe 3.0x1 Slots: {{ pcPart1MotherboardDetails["PCIe 3.0x1 Slots"] }}</p>
+            <hr>
             <p>PCIe 3.0x16 Slots: {{ pcPart1MotherboardDetails["PCIe 3.0x16 Slots"] }}</p>
+            <hr>
             <p>PCIe 4.0x16 Slots: {{ pcPart1MotherboardDetails["PCIe 4.0x16 Slots"] }}</p>
           </div>
         
@@ -59,49 +78,73 @@
         <div v-if="selectedPart === 'GPU'">
           <div class="pcPart1details" v-if="pcPart1GPUDetails">
             <p>Base Clock: {{ pcPart1GPUDetails['Base Clock'] }}</p>
+            <hr>
             <p>DirectX: {{ pcPart1GPUDetails.DirectX }}</p>
+            <hr>
             <p>GDDR: {{ pcPart1GPUDetails.GDDR }}</p>
+            <hr>
             <p>Output Ports: {{ pcPart1GPUDetails['Output Ports'] }}</p>
+            <hr>
             <p>PCIe: {{ pcPart1GPUDetails.PCIe }}</p>
+            <hr>
             <p>Price: {{ pcPart1GPUDetails.Price }}</p>
+            <hr>
             <p>TDP: {{ pcPart1GPUDetails.TDP }}</p>
+            <hr>
             <p>VRAM: {{ pcPart1GPUDetails.VRAM }}</p>
           </div>
         </div>
         <div v-if="selectedPart === 'Case'">
           <div class="pcPart1details" v-if="pcPart1CaseDetails">
             <p>Fan Capacity: {{ pcPart1CaseDetails['Fan Capacity'] }}</p>
+            <hr>
             <p>Fans Included: {{ pcPart1CaseDetails['Fans Included'] }}</p>
+            <hr>
             <p>Form Factor: {{ pcPart1CaseDetails['Form Factor'] }}</p>
+            <hr>
             <p>Price: {{ pcPart1CaseDetails.Price }}</p>
+            <hr>
             <p>RGB: {{ pcPart1CaseDetails.RGB }}</p>
+            <hr>
             <p>Storage Capacity: {{ pcPart1CaseDetails['Storage Capacity'] }}</p>
+            <hr>
             <p>Tempered Glass: {{ pcPart1CaseDetails['Tempered Glass'] }}</p>
           </div>
         </div>
         <div v-if="selectedPart === 'PSU'">
           <div class="pcPart1details" v-if="pcPart1PSUDetails">
             <p>Efficiency: {{ pcPart1PSUDetails.Efficiency }}</p>
+            <hr>
             <p>Modularity: {{ pcPart1PSUDetails.Modularity }}</p>
+            <hr>
             <p>Price: {{ pcPart1PSUDetails.Price }}</p>
+            <hr>
             <p>Size: {{ pcPart1PSUDetails.Size }}</p>
+            <hr>
             <p>Watt: {{ pcPart1PSUDetails.Watt }}</p>
           </div>
         </div>
         <div v-if="selectedPart === 'Storage'">
           <div class="pcPart1details" v-if="pcPart1StorageDetails">
             <p>Capacity: {{ pcPart1StorageDetails.Capacity }}</p>
+            <hr>
             <p>Ports: {{ pcPart1StorageDetails.Ports }}</p>
+            <hr>
             <p>Price: {{ pcPart1StorageDetails.Price }}</p>
+            <hr>
             <p>Read Speed: {{ pcPart1StorageDetails['Read Speed'] }}</p>
+            <hr>
             <p>Write Speed: {{ pcPart1StorageDetails['Write Speed'] }}</p>
           </div>
         </div>
         <div v-if="selectedPart === 'RAM'">
           <div class="pcPart1details" v-if="pcPart1RAMDetails">
             <p>Capacity: {{ pcPart1RAMDetails.Capacity }}</p>
+            <hr>
             <p>DDR: {{ pcPart1RAMDetails.DDR }}</p>
+            <hr>
             <p>Price: {{ pcPart1RAMDetails.Price }}</p>
+            <hr>
             <p>Speed: {{ pcPart1RAMDetails.Speed }}</p>
           </div>
         </div>
@@ -114,78 +157,121 @@
         <div v-if="selectedPart === 'CPU'">
           <div class="pcPart2details" v-if="pcPart2CPUDetails">
             <p>Cores: {{ pcPart2CPUDetails.Cores }}</p>
+            <hr>
             <p>Threads: {{ pcPart2CPUDetails.Threads }}</p>
+            <hr>
             <p>Cache: {{ pcPart2CPUDetails.Cache }}</p>
+            <hr>
             <p>TDP: {{ pcPart2CPUDetails.TDP }}</p>
+            <hr>
             <p>Speed: {{ pcPart2CPUDetails.Speed }}</p>
+            <hr>
             <p>Price: {{ pcPart2CPUDetails.Price }}</p>
+            <hr>
             <p>Name: {{ pcPart2CPUDetails.Name }}</p>
+            <hr>
             <p>Integrated Graphics: {{ pcPart2CPUDetails["Integrated Graphics"] }}</p>
+            <hr>
             <p>Compatibility: {{ pcPart2CPUDetails.Compatibility }}</p>
           </div>
           </div>
         <div v-if="selectedPart === 'Motherboard'">
-          <div class="pcPart2details" v-if="pcPart2MotherboardDetails">
+          <div class="motherBoardStyle" v-if="pcPart2MotherboardDetails">
             <p>Bluetooth: {{ pcPart2MotherboardDetails.Bluetooth }}</p>
+            <hr>
             <p>Chipset: {{ pcPart2MotherboardDetails.Chipset }}</p>
+            <hr>
             <p>Compatibility: {{ pcPart2MotherboardDetails.Compatibility }}</p>
+            <hr>
             <p>Ethernet: {{ pcPart2MotherboardDetails.Ethernet }}</p>
+            <hr>
             <p>Form Factor: {{ pcPart2MotherboardDetails.FormFactor }}</p>
+            <hr>
             <p>M.2 Ports: {{ pcPart2MotherboardDetails["M.2 Ports"] }}</p>
+            <hr>
             <p>Output Ports: {{ pcPart2MotherboardDetails["Output Ports"] }}</p>
+            <hr>
             <p>Price: {{ pcPart2MotherboardDetails.Price }}</p>
+            <hr>
             <p>RAM Slots: {{ pcPart2MotherboardDetails["RAM Slots"] }}</p>
+            <hr>
             <p>PCIe 3.0x1 Slots: {{ pcPart2MotherboardDetails["PCIe 3.0x1 Slots"] }}</p>
+            <hr>
             <p>PCIe 3.0x16 Slots: {{ pcPart2MotherboardDetails["PCIe 3.0x16 Slots"] }}</p>
+            <hr>
             <p>PCIe 4.0x16 Slots: {{ pcPart2MotherboardDetails["PCIe 4.0x16 Slots"] }}</p>
           </div>
         </div>
         <div v-if="selectedPart === 'GPU'">
           <div class="pcPart2details" v-if="pcPart2GPUDetails">
             <p>Base Clock: {{ pcPart2GPUDetails['Base Clock'] }}</p>
+            <hr>
             <p>DirectX: {{ pcPart2GPUDetails.DirectX }}</p>
+            <hr>
             <p>GDDR: {{ pcPart2GPUDetails.GDDR }}</p>
+            <hr>
             <p>Output Ports: {{ pcPart2GPUDetails['Output Ports'] }}</p>
+            <hr>
             <p>PCIe: {{ pcPart2GPUDetails.PCIe }}</p>
+            <hr>
             <p>Price: {{ pcPart2GPUDetails.Price }}</p>
+            <hr>
             <p>TDP: {{ pcPart2GPUDetails.TDP }}</p>
+            <hr>
             <p>VRAM: {{ pcPart2GPUDetails.VRAM }}</p>
           </div>
         </div>
         <div v-if="selectedPart === 'Case'">
           <div class="pcPart2details" v-if="pcPart2CaseDetails">
             <p>Fan Capacity: {{ pcPart2CaseDetails['Fan Capacity'] }}</p>
+            <hr>
             <p>Fans Included: {{ pcPart2CaseDetails['Fans Included'] }}</p>
+            <hr>
             <p>Form Factor: {{ pcPart2CaseDetails['Form Factor'] }}</p>
+            <hr>
             <p>Price: {{ pcPart2CaseDetails.Price }}</p>
+            <hr>
             <p>RGB: {{ pcPart2CaseDetails.RGB }}</p>
+            <hr>
             <p>Storage Capacity: {{ pcPart2CaseDetails['Storage Capacity'] }}</p>
+            <hr>
             <p>Tempered Glass: {{ pcPart2CaseDetails['Tempered Glass'] }}</p>
           </div>
         </div>
         <div v-if="selectedPart === 'PSU'">
           <div class="pcPart2details" v-if="pcPart2PSUDetails">
             <p>Efficiency: {{ pcPart2PSUDetails.Efficiency }}</p>
+            <hr>
             <p>Modularity: {{ pcPart2PSUDetails.Modularity }}</p>
+            <hr>
             <p>Price: {{ pcPart2PSUDetails.Price }}</p>
+            <hr>
             <p>Size: {{ pcPart2PSUDetails.Size }}</p>
+            <hr>
             <p>Watt: {{ pcPart2PSUDetails.Watt }}</p>
           </div>
         </div>
         <div v-if="selectedPart === 'Storage'">
           <div class="pcPart2details" v-if="pcPart2StorageDetails">
             <p>Capacity: {{ pcPart2StorageDetails.Capacity }}</p>
+            <hr>
             <p>Ports: {{ pcPart2StorageDetails.Ports }}</p>
+            <hr>
             <p>Price: {{ pcPart2StorageDetails.Price }}</p>
+            <hr>
             <p>Read Speed: {{ pcPart2StorageDetails['Read Speed'] }}</p>
+            <hr>
             <p>Write Speed: {{ pcPart2StorageDetails['Write Speed'] }}</p>
           </div>
         </div>
         <div v-if="selectedPart === 'RAM'">
           <div class="pcPart2details" v-if="pcPart2RAMDetails">
             <p>Capacity: {{ pcPart2RAMDetails.Capacity }}</p>
+            <hr>
             <p>DDR: {{ pcPart2RAMDetails.DDR }}</p>
+            <hr>
             <p>Price: {{ pcPart2RAMDetails.Price }}</p>
+            <hr>
             <p>Speed: {{ pcPart2RAMDetails.Speed }}</p>
           </div>
         </div>
@@ -461,7 +547,7 @@ export default {
       margin: 0;
       padding: 0;
       border: 0px;
-      height: 100vh;
+      
       background-color: #3f3f3f;
       overflow: hidden;
   }
@@ -726,22 +812,38 @@ export default {
       color: #ffffff
   }
 
-  .pcPart1details{
+  .pcPart1details,
+  .pcPart2details {
     position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #f7ebeb;
-  font-size: 1.2rem; /* Increased font size */
-  font-weight: bold; /* Bolder font weight */
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #f7ebeb;
+    font-size: 1.1rem; /* Increased font size */
+    font-weight: bold; /* Bolder font weight */
+    text-align: center; /* Center align text */
+    width: 80%; /* Set width to 80% of parent container */
+    max-width: 500px; /* Set maximum width for better readability */
   }
-  .pcPart2details{
+
+  .pcPart1details hr,
+  .pcPart2details hr {
+    margin: .5px ; /* Add margin above and below the horizontal line */
+    border: none;
+    border-top: 1px solid #f7ebeb; /* Specify color for horizontal line */
+    width: 100%; /* Make the horizontal line span the entire width */
+  }
+  .motherBoardStyle {
     position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #f7ebeb;
-  font-size: 1.2rem; /* Increased font size */
-  font-weight: bold; /* Bolder font weight */
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #f7ebeb;
+    font-size: .8rem; /* Increased font size */
+    font-weight: bold; /* Bolder font weight */
+    text-align: center; /* Center align text */
+    width: 80%; /* Set width to 80% of parent container */
+    max-width: 500px; /* Set maximum width for better readability */
   }
+ 
   </style>
