@@ -84,7 +84,7 @@
             <tr> 
               <td><router-link to="/Comparison">RAM</router-link></td>
               <td>
-                 {{ selectRAM ? selectedRAM.Name: 'Select Budget' }}
+                 {{ selectedRAM ? selectedRAM.Name: 'Select Budget' }}
               </td>
               <td>{{ selectedRAM ? selectedRAM.Price : '' }}</td>
               <td></td>
