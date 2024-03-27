@@ -21,9 +21,17 @@
           <label for="floatingPassword">Password: </label>
           <input type="password" class="form-control" v-model="password" placeholder="Password">
         </div>
-        <button type="submit" class="btn btn-primary" @click="login" style="float: left;">Login</button>
-        <router-link v-if="error" to="/Login"><button type="button" class="btn btn-danger me-2">Error! Try Again</button></router-link>
-        <router-link v-else to="/Register"><button type="button" style="float: left;" class="btn btn-primary me-2">Sign Up</button></router-link>
+        <button type="submit" class="btn btn-primary mb-3" @click="login">Login</button>
+
+        <div class="sign-upsection">
+          <p class="custom-font">Don't have an account? Sign up</p>
+          <router-link to="/Register"><button type="button" class="btn btn-primary me-2 mb-3">Sign Up</button></router-link>
+
+        </div>
+        <!--<p class="custom-font">Don't have an account? Create one:</p>-->
+
+        <!--<router-link v-if="error" to="/Login"><button type="button" class="btn btn-danger me-2">Error! Try Again</button></router-link>
+        <router-link v-else to="/Register"><button type="button" style="float: left;" class="btn btn-primary me-2">Sign Up</button></router-link>-->
 
       </div>
     </div>
@@ -87,7 +95,6 @@ export default {
 
 <style scoped>
 /* Component-specific styles go here */
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
@@ -120,7 +127,7 @@ nav ul {
 nav ul li {
   display: inline-block;
   list-style: none;
-  margin: 0 20px;
+  margin: 0 10px;
 }
 
 nav ul li a {
@@ -135,7 +142,7 @@ nav ul li a:hover {
 /* Form container styles */
 #MainForm {
   width: 30%;
-  height: 200px;
+  height: 300px;
   margin: 50px auto;
   background-color: #fff;
   padding: 30px;
@@ -146,7 +153,7 @@ nav ul li a:hover {
 
 /* Form input styles */
 .form-floating {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .form-floating label {
@@ -166,6 +173,7 @@ nav ul li a:hover {
   cursor: pointer;
   color: #fff;
   margin-right: 10px;
+  margin-top: 7px;
 }
 
 .btn-primary:hover {
@@ -174,5 +182,9 @@ nav ul li a:hover {
 
 .btn-primary.me-2 {
   margin-right: 10px;
+}
+
+.custom-font{
+  font-size: 12px;
 }
 </style>
