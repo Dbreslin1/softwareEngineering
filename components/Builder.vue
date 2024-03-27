@@ -25,6 +25,7 @@
             <th>Selected</th>
             <th style="width: 100px;">Price</th>
             <th style="width: 100px;">Compatibility</th>
+            <th style="width: 100px;">Link</th>
           </tr>
         </thead>
         <tbody>
@@ -37,6 +38,10 @@
               </select>
             </td>
             <td>{{ selectedMotherboard ? selectedMotherboard.Price: '' }}</td>
+            <td></td>
+            <td>
+      <a :href="selectedMotherboard ? selectedMotherboard.AmazonLink : ''" target="_blank" v-if="selectedMotherboard && selectedMotherboard.AmazonLink">Amazon</a>
+    </td>
           </tr>
           <tr>
             <td><router-link to="/Comparison">CPU</router-link></td>
@@ -47,7 +52,10 @@
               </select>
             </td>
             <td>{{ selectedCpu ? selectedCpu.Price: '' }}</td>
-            
+            <td></td>
+            <td>
+      <a :href="selectedCpu ? selectedCpu.AmazonLink : ''" target="_blank" v-if="selectedCpu&& selectedCpu.AmazonLink">Amazon</a>
+    </td>
           </tr>
           <tr> 
             <td><router-link to="/Comparison">Case</router-link></td>
@@ -59,6 +67,9 @@
             </td>
             <td>{{ selectedCase ? selectedCase.Price : '' }}</td>
             <td></td>
+            <td>
+      <a :href="selectedCase? selectedCase.AmazonLink : ''" target="_blank" v-if="selectedCase&& selectedCase.AmazonLink">Amazon</a>
+    </td>
           </tr>
           <tr> 
             <td><router-link to="/Comparison">GPU</router-link></td>
@@ -69,7 +80,10 @@
               </select>
               </td>
               <td>{{ selectedGpu ? selectedGpu.Price : '' }}</td> <!-- Make sure selectedGpuPrice is correctly bound here -->
-            <td></td>
+              <td></td>
+            <td>
+      <a :href="selectedGpu? selectedGpu.AmazonLink : ''" target="_blank" v-if="selectedGpu && selectedGpu.AmazonLink">Amazon</a>
+    </td>
           </tr>
           <tr> 
             <td><router-link to="/Comparison">RAM</router-link></td>
@@ -81,7 +95,9 @@
             </td>
             <td>{{ selectedRAM ? selectedRAM.Price : '' }}</td>
             <td></td>
-            <td></td>
+            <td>
+      <a :href="selectedRAM ? selectedRAM.AmazonLink : ''" target="_blank" v-if="selectedRAM && selectedRAM.AmazonLink">Amazon</a>
+    </td>
           </tr>
           <tr> 
             <td><router-link to="/Comparison">Storage</router-link></td>
@@ -93,7 +109,9 @@
             </td>
             <td>{{ selectedStorage ? selectedStorage.Price : '' }}</td>
             <td></td>
-            <td></td>
+            <td>
+      <a :href="selectedStorage ? selectedStorage.AmazonLink : ''" target="_blank" v-if="selectedStorage && selectedStorage.AmazonLink">Amazon</a>
+    </td>
           </tr>
           <tr> 
             <td><router-link to="/Comparison">PSU</router-link></td>
@@ -105,7 +123,9 @@
             </td>
             <td>{{ selectedPSU ? selectedPSU.Price : '' }}</td>
             <td></td>
-            <td></td>
+            <td>
+      <a :href="selectedPSU ? selectedPSU.AmazonLink : ''" target="_blank" v-if="selectedPSU && selectedPSU.AmazonLink">Amazon</a>
+    </td>
           </tr>
           <tr class="total-row">
   <td>Total</td>
