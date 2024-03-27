@@ -58,7 +58,7 @@
             <hr>
             <p>Ethernet: {{ pcPart1MotherboardDetails.Ethernet }}</p>
             <hr>
-            <p>Form Factor: {{ pcPart1MotherboardDetails.FormFactor }}</p>
+            <p>Form Factor: {{ pcPart1MotherboardDetails["Form Factor"] }}</p>
             <hr>
             <p>M.2 Ports: {{ pcPart1MotherboardDetails["M.2 Ports"] }}</p>
             <hr>
@@ -186,7 +186,7 @@
             <hr>
             <p>Ethernet: {{ pcPart2MotherboardDetails.Ethernet }}</p>
             <hr>
-            <p>Form Factor: {{ pcPart2MotherboardDetails.FormFactor }}</p>
+            <p>Form Factor: {{ pcPart2MotherboardDetails["Form Factor"] }}</p>
             <hr>
             <p>M.2 Ports: {{ pcPart2MotherboardDetails["M.2 Ports"] }}</p>
             <hr>
