@@ -4,11 +4,11 @@
      <nav>
        <router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
        <ul>
-         <li><router-link to="/Builder">Builder</router-link></li>
+         <!--<li><router-link to="/Builder">Builder</router-link></li>
          <li><router-link to="/Comparison">Comparison</router-link></li>
-         <li><router-link to="/Support">Support</router-link></li>
-         <li><router-link to="/Login"><a>Login</a></router-link></li>
+         <li><router-link to="/Support">Support</router-link></li>-->
          <li v-if="!userRegistered"><router-link to="/Register"><a>Register</a></router-link></li>
+         <li><router-link to="/Login"><a>Login</a></router-link></li>
        </ul>
      </nav>
     <div id="MainForm" class="w-25 m-4">
@@ -81,7 +81,7 @@ export default {
             lname: this.lnameInp
             
           });
-          this.$router.push({path: '/'})
+          this.$router.push({path: '/HomePage'})
         })
         .catch((error) => {
           this.error = true;
