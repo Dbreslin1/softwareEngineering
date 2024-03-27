@@ -7,8 +7,6 @@
           <li><router-link to="/Builder">Builder</router-link></li>
           <li><router-link to="/Comparison">Comparison</router-link></li>
           <li><router-link to="/Support">Support</router-link></li>
-            <li><router-link to="/Login">Login</router-link></li>
-          <li><router-link to="/Register">Register</router-link></li>
         </ul>
       </nav>
       <div class="custom-select">
