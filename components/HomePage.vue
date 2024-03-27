@@ -16,6 +16,8 @@
       <li><router-link to="/Builder"><a>Builder</a></router-link></li>
       <li><router-link to="/Comparison"><a>Comparison</a></router-link></li>
       <li><router-link to="/Support"><a>Support</a></router-link></li>
+      <li><a @click="logout" class="logout-btn">Logout</a></li>
+
     </ul>
         </nav>
     </div>
@@ -42,10 +44,23 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+function logout(){
+    if(confirm("Are you sure you want to logout?")){
+        router.push('/');
+    }
+}
+
 
 </script>
 
 <style scoped>
+
+.logout-btn {
+  cursor: pointer; /* Change cursor to a hand on hover */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
