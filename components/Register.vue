@@ -30,9 +30,10 @@
           <input type="text" class="form-control" id="lName" v-model="lnameInp" placeholder="Last Name">
         </div>
         <button type="submit" class="btn btn-primary" @click="registerUser">Create New User</button>
-        <!--<router-link v-if="error" to="/Register"><button type="button" class="btn btn-danger me-2">Error! Try Again</button></router-link>-->
-        <!--<router-link v-else to="/Builder"><button type="button" class="btn btn-danger me-2">User Registered Successfully</button></router-link>-->
+        <!--<router-link v-if="error" to="/Register"><button type="button" class="btn btn-danger me-2">Error! Try Again</button></router-link>
+        <router-link v-else to="/Builder"><button type="button" class="btn btn-danger me-2">User Registered Successfully</button></router-link>-->
 
+        <p class="custom-font">Already have an account? Sign in below:</p>
         <router-link to="/Login"><button class="btn btn-primary me-2">Sign In</button></router-link>
     </div>
    </div>
@@ -79,7 +80,6 @@ export default {
           set(ref(db, 'UsersAuthList/' + credentials.user.uid),{
             fname: this.fnameInp,
             lname: this.lnameInp
-            
           });
           this.$router.push({path: '/HomePage'})
         })
@@ -89,10 +89,32 @@ export default {
           console.log(error.code);
           console.log(error.message);
         });
-        this.userRegistered = true;
+      this.userRegistered = true;
+    },
+
+    saveUserData() {
+      const userData = {
+        fname: this.fnameInp,
+        lname: this.lnameInp
+      };
+
+      fetch('https://saveusername-igki44h7vq-uc.a.run.app', {
+        method: "POST",
+        body: JSON.stringify(userData),
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to post user data to the server');
+        }
+        // Handle success if needed
+      })
+      .catch(error => {
+        console.error('Error posting user data:', error);
+      });
     }
   }
-};
+    };
+
 </script>
 
 <style scoped>
@@ -157,9 +179,15 @@ nav ul li a:hover {
 .form-floating {
   margin-bottom: 20px;
 }
+/*.form-group{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}*/
 
 .form-floating label {
   color: #495057;
+  
 }
 
 .form-control {
@@ -183,5 +211,9 @@ nav ul li a:hover {
 
 .btn-primary.me-2 {
   margin-right: 10px;
+}
+
+.custom-font{
+  font-size: 12px;
 }
 </style>
