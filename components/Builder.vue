@@ -8,12 +8,16 @@
             <ul>
               <li><router-link to="/Builder" draggable="false">Builder</router-link></li>
               <li><router-link to="/Comparison" draggable="false">Comparison</router-link></li>
+              <li><router-link to="/PreBuild"><a>Build by Budget</a></router-link></li>
               <li><router-link to="/Support" draggable="false">Support</router-link></li>
             </ul>
           </nav>
         </div>
       </header>
       <h1>Choose Your Parts</h1>
+    </div>
+    <button class="btn" @click="checkComp">BUILD</button>
+    <div>
       <table>
         <thead>
           <tr>
@@ -32,21 +36,18 @@
                 <option v-for="mb in motherboards" :key="mb.id" :value="mb">{{ mb.Name }}</option>
               </select>
             </td>
-            <td>{{ selectedMotherboard ? selectedMotherboard.Price : '' }}</td>
-            <td></td>
+            <td>{{ selectedMotherboard ? selectedMotherboard.Compatibility: '' }}</td>
           </tr>
           <tr>
             <td><router-link to="/Comparison">CPU</router-link></td>
             <td>
-              <select name="cpu" id="cpuSelect" v-model="selectedCpu">
+              <select name="cpu" id="" v-model="selectedCpu">
                 <option value="">None Selected</option>
                 <option v-for="cpu in cpus" :key="cpu.id" :value="cpu">{{ cpu.Name }}</option>
               </select>
             </td>
-            <td>{{ selectedCpu ? selectedCpu.Price : '' }}</td>
-            <td>
-              <div class="status uncompatible"> ✖ </div>
-            </td>
+            <td>{{ selectedCpu ? selectedCpu.Price: '' }}</td>
+            
           </tr>
           <tr> 
             <td><router-link to="/Comparison">Case</router-link></td>
@@ -73,12 +74,13 @@
           <tr> 
             <td><router-link to="/Comparison">RAM</router-link></td>
             <td>
-              <select name="ram" id="" v-model="selectedRam">
+              <select name="ram" id="" v-model="selectedRAM">
                 <option value="">None Selected</option>
                 <option v-for="r in rams" :key="r.id" :value="r">{{ r.Name }}</option>
               </select>
             </td>
-            <td>{{ selectedRam ? selectedRam.Price : '' }}</td>
+            <td>{{ selectedRAM ? selectedRAM.Price : '' }}</td>
+            <td></td>
             <td></td>
           </tr>
           <tr> 
@@ -91,19 +93,31 @@
             </td>
             <td>{{ selectedStorage ? selectedStorage.Price : '' }}</td>
             <td></td>
+            <td></td>
           </tr>
           <tr> 
             <td><router-link to="/Comparison">PSU</router-link></td>
             <td>
-              <select name="psu" id="" v-model="SelectedPsu">
+              <select name="psu" id="" v-model="selectedPSU">
                 <option value="">None Selected</option>
                 <option v-for="p in psus" :key="p.id" :value="p">{{ p.Name }}</option>
               </select>
             </td>
-            <td>{{ SelectedPsu ? SelectedPsu.Price : '' }}</td>
+            <td>{{ selectedPSU ? selectedPSU.Price : '' }}</td>
+            <td></td>
             <td></td>
           </tr>
-          <!-- Other component rows -->
+          <tr class="total-row">
+  <td>Total</td>
+  <td></td>
+  <td>{{ totalPrice }}</td>
+  <td>
+    <div v-if="compatibility !== null" :class="{'status': true, 'compatible': compatibility === 'Compatible', 'incompatible': compatibility !== 'Compatible'}">
+      <span v-if="compatibility === 'Compatible'">✔</span>
+      <span v-else>✘</span>
+    </div>
+  </td>
+</tr>
         </tbody>
       </table>
     </div>
@@ -122,13 +136,16 @@ export default {
       rams: [],
       storages: [],
       psus: [],
-      selectedMotherboard: null,
-      selectedCpu: null,
       selectedGpu: null,  // Initialize selectedGpu to null
       selectedCase: null,  // Initialize selectedGpu to null
-      selectedRam: null,
+      selectedCpu: null,
+      selectedMotherboard: null,
+      selectedRAM: null,
       selectedStorage: null,
-      SelectedPsu: null
+      selectedPSU: null,
+      compatibility: null,
+      totalPrice: 0
+      
     };
   },
   mounted() {
@@ -213,10 +230,49 @@ export default {
         console.error('Error fetching Psus:', error);
       }
     },
-  },
+    
+
+    checkComp() {
+      if (this.selectedCpu && this.selectedMotherboard) {
+        if ((this.selectedCpu.Compatibility === this.selectedMotherboard.Compatibility) || (this.selectedCpu.Compatibility === this.selectedMotherboard.Compatibility1)) {
+          this.compatibility = 'Compatible';
+        } else {
+          this.compatibility = 'Not Compatible';
+        }
+      } else {
+        this.compatibility = null; // Reset to null if button is not pressed
+      }
+
+      this.totalPrice = this.calculateTotalPrice();
+      
+    },
+    calculateTotalPrice() {
+      let totalPrice = 0;
+     if (this.selectedMotherboard) {
+    totalPrice += parseFloat(this.selectedMotherboard.Price);
+  }
+  if (this.selectedCpu) {
+    totalPrice += parseFloat(this.selectedCpu.Price);
+  }
+  if (this.selectedGpu) {
+    totalPrice += parseFloat(this.selectedGpu.Price);
+  }
   
-  
- 
+  if (this.selectedCase) {
+    totalPrice += parseFloat(this.selectedCase.Price);
+  }
+  if (this.selectedRAM) {
+    totalPrice += parseFloat(this.selectedRAM.Price);
+  }
+  if (this.selectedPSU) {
+    totalPrice += parseFloat(this.selectedPSU.Price);
+  }
+  if (this.selectedStorage) {
+    totalPrice += parseFloat(this.selectedStorage.Price);
+  }
+ return totalPrice;
+}
+  }
 }
 
 </script>
@@ -230,6 +286,21 @@ body {
     background-color: #3f3f3f;
     height: 100vh;
     overflow-x: hidden;
+}
+.btn {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  position: absolute;
+  left: 73%; /* Move the button 70% across the screen */
 }
 
 nav {
@@ -447,6 +518,7 @@ a:hover {
 
 select {
     box-shadow: 0 .1rem .3rem #000;
+    width: 500px;
     font-size: 18px;
     padding: 0.3em 1.5em;
     background: #2f2e2d;
@@ -480,5 +552,20 @@ select {
     left: 50%;
     transform: translate(-50%, -50%);
     color: #ffffff
+}
+.status {
+  font-size: 20px;
+}
+
+.compatible {
+  color: green;
+}
+
+.incompatible {
+  color: red;
+}
+
+tr.total-row {
+  border-top: 1px solid white;
 }
 </style>
