@@ -40,7 +40,7 @@
             <tr> 
               <td><router-link to="/Comparison">Motherboard</router-link></td>
               <td>
-                {{ selectedMotherboard ? selectedMotherboard.Name: ''}}
+                {{ selectedMotherboard ? selectedMotherboard.Name : 'None Selected' }}
               </td>
               <td>{{ selectedMotherboard ? selectedMotherboard.Price: '' }}</td>
               <td></td>
@@ -49,7 +49,7 @@
             <tr>
               <td><router-link to="/Comparison">CPU</router-link></td>
               <td>
-                <!-- {{ selectedCpu ? selectedCpu.Name: '' }}-->
+                {{ selectedCpu ? selectedCpu.Name: 'None Selected' }}
               </td>
               <td>{{ selectedCpu ? selectedCpu.Price: '' }}</td>
               <td></td>
@@ -58,7 +58,7 @@
             <tr> 
               <td><router-link to="/Comparison">Case</router-link></td>
               <td>
-                <!--{{ selectedCase.Name }}-->
+                {{ selectedCase ? selectedCase.Name: 'None Selected'}}
               </td>
               <td>{{ selectedCase ? selectedCase.Price : '' }}</td>
               <td></td>
