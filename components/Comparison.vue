@@ -1,4 +1,5 @@
 <template>
+  <body>
   <div>
     <nav>
       <router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
@@ -117,6 +118,7 @@
       </div>
     </div>
   </div>
+    </body>
 </template>
 
 <script>
