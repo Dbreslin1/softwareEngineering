@@ -10,6 +10,9 @@
             <a router-link to="/" draggable="false"><img src="@/assets/images/white-frame-free-png.png" class="logo"
                     draggable="false"></a>
                     <ul>
+      
+      <li><router-link to="/Register"><a>Register</a></router-link></li>
+      <li><router-link to="/Login"><a>Login</a></router-link></li>
       <li><router-link to="/Builder"><a>Builder</a></router-link></li>
       <li><router-link to="/Comparison"><a>Comparison</a></router-link></li>
       <li><router-link to="/Support"><a>Support</a></router-link></li>
@@ -20,7 +23,7 @@
         <h2>BUILD <br>YOUR PC<br> NOW</h2>
         <p>The best place to go if you want<br>to build and configure a custom<br>PC as fast and easily as
             possible.</p> 
-            <router-link to="/Builder">Get Started →</router-link>
+            <router-link to="/Register">Get Started →</router-link>
     </div> 
     <div id="image-setone">
         <img class="image" src="@/assets/images/amd.jpg" draggable="false">
