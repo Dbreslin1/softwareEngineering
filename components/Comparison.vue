@@ -1,4 +1,5 @@
 <template>
+    <body>
     <div>
       <nav>
         <router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
@@ -6,6 +7,8 @@
           <li><router-link to="/Builder">Builder</router-link></li>
           <li><router-link to="/Comparison">Comparison</router-link></li>
           <li><router-link to="/Support">Support</router-link></li>
+            <li><router-link to="/Login">Login</router-link></li>
+          <li><router-link to="/Register">Register</router-link></li>
         </ul>
       </nav>
       <div class="custom-select">
@@ -35,6 +38,7 @@
         </div>
       </div>
     </div>
+        </body>
   </template>
   
   <script>
