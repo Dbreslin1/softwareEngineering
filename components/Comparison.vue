@@ -1,554 +1,139 @@
 <template>
-  <body>
-  <div>
-    <nav>
-      <router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
-      <ul>
-        <li><router-link to="/Builder">Builder</router-link></li>
-        <li><router-link to="/Comparison">Comparison</router-link></li>
-        <li><router-link to="/PreBuild"><a>Build by Budget</a></router-link></li>
-        <li><router-link to="/Support">Support</router-link></li>
-      </ul>
-    </nav>
-    <div class="custom-select">
-      <select v-model="selectedPart">
-        <option value="CPU">CPU</option>
-        <option value="Motherboard">Motherboard</option>
-        <option value="Case">Case</option>
-        <option value="GPU">GPU</option>
-        <option value="RAM">RAM</option>
-        <option value="PSU">PSU</option>
-        <option value="Storage">Storage</option>
-      </select>
-    </div>
-    <div class="rectangle-container">
-      <div class="rectangle">
-        <p class="info"><b>Pc part 1</b></p>
-        <select class="myDropDown1" v-model="pcPart1">
-          <option v-for="option in pcPart1Options" :key="option">{{ option }}</option>
+    <div>
+      <nav>
+        <router-link to="/HomePage"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
+        <ul>
+          <li><router-link to="/Builder">Builder</router-link></li>
+          <li><router-link to="/Comparison">Comparison</router-link></li>
+          <li><router-link to="/Support">Support</router-link></li>
+          <li><a @click="logout" class="logout-btn">Logout</a></li>
+
+        </ul>
+      </nav>
+      <div class="custom-select">
+        <!-- Keep the top dropdown static -->
+        <select v-model="selectedPart">
+          <option value="Motherboard">Motherboard</option>
+          <option value="CPU">CPU</option>
+          <option value="Cases">Cases</option>
+          <option value="RAM">RAM</option>
+          <option value="Storage">Storage</option>
+          <option value="PSU">PSU</option>
+          <option value="GPU">GPU</option>
         </select>
-        <div v-if="selectedPart === 'CPU'">
-          <div class="pcPart1details" v-if="pcPart1CPUDetails">
-            <p>Cores: {{ pcPart1CPUDetails.Cores }}</p>
-            <hr>
-            <p>Threads: {{ pcPart1CPUDetails.Threads }}</p>
-            <hr>
-            <p>Cache: {{ pcPart1CPUDetails.Cache }}</p>
-            <hr>
-            <p>TDP: {{ pcPart1CPUDetails.TDP }}</p>
-            <hr>
-            <p>Speed: {{ pcPart1CPUDetails.Speed }}</p>
-            <hr>
-            <p>Price: {{ pcPart1CPUDetails.Price }}</p>
-            <hr>
-            <p>Name: {{ pcPart1CPUDetails.Name }}</p>
-            <hr>
-            <p>Integrated Graphics: {{ pcPart1CPUDetails["Integrated Graphics"] }}</p>
-            <hr>
-            <p>Compatibility: {{ pcPart1CPUDetails.Compatibility }}</p>
-          </div>
-         </div>
-        <div v-if="selectedPart === 'Motherboard'">
-          <div class="motherBoardStyle" v-if="pcPart1MotherboardDetails">
-            <p>Bluetooth: {{ pcPart1MotherboardDetails.Bluetooth }}</p>
-            <hr>
-            <p>Chipset: {{ pcPart1MotherboardDetails.Chipset }}</p>
-            <hr>
-            <p>Compatibility: {{ pcPart1MotherboardDetails.Compatibility }}</p>
-            <hr>
-            <p>Ethernet: {{ pcPart1MotherboardDetails.Ethernet }}</p>
-            <hr>
-            <p>Form Factor: {{ pcPart1MotherboardDetails["Form Factor"] }}</p>
-            <hr>
-            <p>M.2 Ports: {{ pcPart1MotherboardDetails["M.2 Ports"] }}</p>
-            <hr>
-            <p>Output Ports: {{ pcPart1MotherboardDetails["Output Ports"] }}</p>
-            <hr>
-            <p>Price: {{ pcPart1MotherboardDetails.Price }}</p>
-            <hr>
-            <p>RAM Slots: {{ pcPart1MotherboardDetails["RAM Slots"] }}</p>
-            <hr>
-            <p>PCIe 3.0x1 Slots: {{ pcPart1MotherboardDetails["PCIe 3.0x1 Slots"] }}</p>
-            <hr>
-            <p>PCIe 3.0x16 Slots: {{ pcPart1MotherboardDetails["PCIe 3.0x16 Slots"] }}</p>
-            <hr>
-            <p>PCIe 4.0x16 Slots: {{ pcPart1MotherboardDetails["PCIe 4.0x16 Slots"] }}</p>
-          </div>
-        
-        </div>
-        <div v-if="selectedPart === 'GPU'">
-          <div class="pcPart1details" v-if="pcPart1GPUDetails">
-            <p>Base Clock: {{ pcPart1GPUDetails['Base Clock'] }}</p>
-            <hr>
-            <p>DirectX: {{ pcPart1GPUDetails.DirectX }}</p>
-            <hr>
-            <p>GDDR: {{ pcPart1GPUDetails.GDDR }}</p>
-            <hr>
-            <p>Output Ports: {{ pcPart1GPUDetails['Output Ports'] }}</p>
-            <hr>
-            <p>PCIe: {{ pcPart1GPUDetails.PCIe }}</p>
-            <hr>
-            <p>Price: {{ pcPart1GPUDetails.Price }}</p>
-            <hr>
-            <p>TDP: {{ pcPart1GPUDetails.TDP }}</p>
-            <hr>
-            <p>VRAM: {{ pcPart1GPUDetails.VRAM }}</p>
-          </div>
-        </div>
-        <div v-if="selectedPart === 'Case'">
-          <div class="pcPart1details" v-if="pcPart1CaseDetails">
-            <p>Fan Capacity: {{ pcPart1CaseDetails['Fan Capacity'] }}</p>
-            <hr>
-            <p>Fans Included: {{ pcPart1CaseDetails['Fans Included'] }}</p>
-            <hr>
-            <p>Form Factor: {{ pcPart1CaseDetails['Form Factor'] }}</p>
-            <hr>
-            <p>Price: {{ pcPart1CaseDetails.Price }}</p>
-            <hr>
-            <p>RGB: {{ pcPart1CaseDetails.RGB }}</p>
-            <hr>
-            <p>Storage Capacity: {{ pcPart1CaseDetails['Storage Capacity'] }}</p>
-            <hr>
-            <p>Tempered Glass: {{ pcPart1CaseDetails['Tempered Glass'] }}</p>
-          </div>
-        </div>
-        <div v-if="selectedPart === 'PSU'">
-          <div class="pcPart1details" v-if="pcPart1PSUDetails">
-            <p>Efficiency: {{ pcPart1PSUDetails.Efficiency }}</p>
-            <hr>
-            <p>Modularity: {{ pcPart1PSUDetails.Modularity }}</p>
-            <hr>
-            <p>Price: {{ pcPart1PSUDetails.Price }}</p>
-            <hr>
-            <p>Size: {{ pcPart1PSUDetails.Size }}</p>
-            <hr>
-            <p>Watt: {{ pcPart1PSUDetails.Watt }}</p>
-          </div>
-        </div>
-        <div v-if="selectedPart === 'Storage'">
-          <div class="pcPart1details" v-if="pcPart1StorageDetails">
-            <p>Capacity: {{ pcPart1StorageDetails.Capacity }}</p>
-            <hr>
-            <p>Ports: {{ pcPart1StorageDetails.Ports }}</p>
-            <hr>
-            <p>Price: {{ pcPart1StorageDetails.Price }}</p>
-            <hr>
-            <p>Read Speed: {{ pcPart1StorageDetails['Read Speed'] }}</p>
-            <hr>
-            <p>Write Speed: {{ pcPart1StorageDetails['Write Speed'] }}</p>
-          </div>
-        </div>
-        <div v-if="selectedPart === 'RAM'">
-          <div class="pcPart1details" v-if="pcPart1RAMDetails">
-            <p>Capacity: {{ pcPart1RAMDetails.Capacity }}</p>
-            <hr>
-            <p>DDR: {{ pcPart1RAMDetails.DDR }}</p>
-            <hr>
-            <p>Price: {{ pcPart1RAMDetails.Price }}</p>
-            <hr>
-            <p>Speed: {{ pcPart1RAMDetails.Speed }}</p>
-          </div>
-        </div>
       </div>
-      <div class="rectangle">
-        <p class="info"><b>Pc part 2</b></p>
-        <select class="myDropDown1" v-model="pcPart2">
-          <option v-for="option in pcPart2Options" :key="option">{{ option }}</option>
-        </select>
-        <div v-if="selectedPart === 'CPU'">
-          <div class="pcPart2details" v-if="pcPart2CPUDetails">
-            <p>Cores: {{ pcPart2CPUDetails.Cores }}</p>
-            <hr>
-            <p>Threads: {{ pcPart2CPUDetails.Threads }}</p>
-            <hr>
-            <p>Cache: {{ pcPart2CPUDetails.Cache }}</p>
-            <hr>
-            <p>TDP: {{ pcPart2CPUDetails.TDP }}</p>
-            <hr>
-            <p>Speed: {{ pcPart2CPUDetails.Speed }}</p>
-            <hr>
-            <p>Price: {{ pcPart2CPUDetails.Price }}</p>
-            <hr>
-            <p>Name: {{ pcPart2CPUDetails.Name }}</p>
-            <hr>
-            <p>Integrated Graphics: {{ pcPart2CPUDetails["Integrated Graphics"] }}</p>
-            <hr>
-            <p>Compatibility: {{ pcPart2CPUDetails.Compatibility }}</p>
-          </div>
-          </div>
-        <div v-if="selectedPart === 'Motherboard'">
-          <div class="motherBoardStyle" v-if="pcPart2MotherboardDetails">
-            <p>Bluetooth: {{ pcPart2MotherboardDetails.Bluetooth }}</p>
-            <hr>
-            <p>Chipset: {{ pcPart2MotherboardDetails.Chipset }}</p>
-            <hr>
-            <p>Compatibility: {{ pcPart2MotherboardDetails.Compatibility }}</p>
-            <hr>
-            <p>Ethernet: {{ pcPart2MotherboardDetails.Ethernet }}</p>
-            <hr>
-            <p>Form Factor: {{ pcPart2MotherboardDetails["Form Factor"] }}</p>
-            <hr>
-            <p>M.2 Ports: {{ pcPart2MotherboardDetails["M.2 Ports"] }}</p>
-            <hr>
-            <p>Output Ports: {{ pcPart2MotherboardDetails["Output Ports"] }}</p>
-            <hr>
-            <p>Price: {{ pcPart2MotherboardDetails.Price }}</p>
-            <hr>
-            <p>RAM Slots: {{ pcPart2MotherboardDetails["RAM Slots"] }}</p>
-            <hr>
-            <p>PCIe 3.0x1 Slots: {{ pcPart2MotherboardDetails["PCIe 3.0x1 Slots"] }}</p>
-            <hr>
-            <p>PCIe 3.0x16 Slots: {{ pcPart2MotherboardDetails["PCIe 3.0x16 Slots"] }}</p>
-            <hr>
-            <p>PCIe 4.0x16 Slots: {{ pcPart2MotherboardDetails["PCIe 4.0x16 Slots"] }}</p>
-          </div>
+      <div class="rectangle-container">
+        <div class="rectangle">
+          <p class="info"><b>Pc part 1</b></p>
+          <select class="myDropDown1" v-model="pcPart1">
+            <option v-for="option in pcPart1Options" :key="option">{{ option }}</option>
+          </select>
         </div>
-        <div v-if="selectedPart === 'GPU'">
-          <div class="pcPart2details" v-if="pcPart2GPUDetails">
-            <p>Base Clock: {{ pcPart2GPUDetails['Base Clock'] }}</p>
-            <hr>
-            <p>DirectX: {{ pcPart2GPUDetails.DirectX }}</p>
-            <hr>
-            <p>GDDR: {{ pcPart2GPUDetails.GDDR }}</p>
-            <hr>
-            <p>Output Ports: {{ pcPart2GPUDetails['Output Ports'] }}</p>
-            <hr>
-            <p>PCIe: {{ pcPart2GPUDetails.PCIe }}</p>
-            <hr>
-            <p>Price: {{ pcPart2GPUDetails.Price }}</p>
-            <hr>
-            <p>TDP: {{ pcPart2GPUDetails.TDP }}</p>
-            <hr>
-            <p>VRAM: {{ pcPart2GPUDetails.VRAM }}</p>
-          </div>
-        </div>
-        <div v-if="selectedPart === 'Case'">
-          <div class="pcPart2details" v-if="pcPart2CaseDetails">
-            <p>Fan Capacity: {{ pcPart2CaseDetails['Fan Capacity'] }}</p>
-            <hr>
-            <p>Fans Included: {{ pcPart2CaseDetails['Fans Included'] }}</p>
-            <hr>
-            <p>Form Factor: {{ pcPart2CaseDetails['Form Factor'] }}</p>
-            <hr>
-            <p>Price: {{ pcPart2CaseDetails.Price }}</p>
-            <hr>
-            <p>RGB: {{ pcPart2CaseDetails.RGB }}</p>
-            <hr>
-            <p>Storage Capacity: {{ pcPart2CaseDetails['Storage Capacity'] }}</p>
-            <hr>
-            <p>Tempered Glass: {{ pcPart2CaseDetails['Tempered Glass'] }}</p>
-          </div>
-        </div>
-        <div v-if="selectedPart === 'PSU'">
-          <div class="pcPart2details" v-if="pcPart2PSUDetails">
-            <p>Efficiency: {{ pcPart2PSUDetails.Efficiency }}</p>
-            <hr>
-            <p>Modularity: {{ pcPart2PSUDetails.Modularity }}</p>
-            <hr>
-            <p>Price: {{ pcPart2PSUDetails.Price }}</p>
-            <hr>
-            <p>Size: {{ pcPart2PSUDetails.Size }}</p>
-            <hr>
-            <p>Watt: {{ pcPart2PSUDetails.Watt }}</p>
-          </div>
-        </div>
-        <div v-if="selectedPart === 'Storage'">
-          <div class="pcPart2details" v-if="pcPart2StorageDetails">
-            <p>Capacity: {{ pcPart2StorageDetails.Capacity }}</p>
-            <hr>
-            <p>Ports: {{ pcPart2StorageDetails.Ports }}</p>
-            <hr>
-            <p>Price: {{ pcPart2StorageDetails.Price }}</p>
-            <hr>
-            <p>Read Speed: {{ pcPart2StorageDetails['Read Speed'] }}</p>
-            <hr>
-            <p>Write Speed: {{ pcPart2StorageDetails['Write Speed'] }}</p>
-          </div>
-        </div>
-        <div v-if="selectedPart === 'RAM'">
-          <div class="pcPart2details" v-if="pcPart2RAMDetails">
-            <p>Capacity: {{ pcPart2RAMDetails.Capacity }}</p>
-            <hr>
-            <p>DDR: {{ pcPart2RAMDetails.DDR }}</p>
-            <hr>
-            <p>Price: {{ pcPart2RAMDetails.Price }}</p>
-            <hr>
-            <p>Speed: {{ pcPart2RAMDetails.Speed }}</p>
-          </div>
+        <div class="rectangle">
+          <p class="info"><b>Pc part 2</b></p>
+          <select class="myDropDown1" v-model="pcPart2">
+            <option v-for="option in pcPart2Options" :key="option">{{ option }}</option>
+          </select>
         </div>
       </div>
     </div>
-  </div>
-  </body>
-</template>
-
-<script>
-export default {
-  name: 'Compare',
-  data() {
-    return {
-      selectedPart: 'Please select',
-      pcPart1: '',
-      pcPart2: '',
-      pcPart1Options: [],
-      pcPart2Options: [],
-      pcPart1MotherboardDetails: null,
-      pcPart2MotherboardDetails: null,
-      pcPart2CPUDetails: null,
-      pcPart1CPUDetails: null,
-      pcPart1GPUDetails: null,
-      pcPart2GPUDetails: null,
-      pcPart1CaseDetails: null,
-      pcPart2CaseDetails: null,
-      pcPart1PSUDetails: null,
-      pcPart2PSUDetails: null,
-      pcPart1StorageDetails: null,
-      pcPart2StorageDetails: null,
-      pcPart1RAMDetails: null,
-      pcPart2RAMDetails: null,
-    };
-  },
-  methods: {
-    async fetchOptionsForPart(part, endpoint) {
-      try {
-        const response = await fetch(endpoint);
-        const data = await response.json();
-        console.log(data);
-        if (part === 'CPU') {
-          this.pcPart1MotherboardDetails = null; // Reset details for pcPart1 when changing options
-          this.pcPart2MotherboardDetails = null; // Reset details for pcPart2 when changing options
-          this.pcPart1GPUDetails = null;
-          this.pcPart2GPUDetails = null;
-          this.pcPart1CaseDetails = null;
-          this.pcPart2CaseDetails = null;
-          this.pcPart1PSUDetails = null;
-          this.pcPart2PSUDetails = null;
-          this.pcPart1StorageDetails = null;
-          this.pcPart2StorageDetails = null;
-          this.pcPart1RAMDetails= null;
-          this.pcPart2RAMDetails= null;
-
-          this.pcPart1Options = data.map(item => item.Name);
-          this.pcPart2Options = data.map(item => item.Name);
-        }
-        if (part === 'Motherboard') {
-          this.pcPart1CPUDetails = null; // Reset details for pcPart1 when changing options
-          this.pcPart2CPUDetails = null; // Reset details for pcPart2 when changing options
-          this.pcPart1GPUDetails = null;
-          this.pcPart2GPUDetails = null;
-          this.pcPart1CaseDetails = null;
-          this.pcPart2CaseDetails = null;
-          this.pcPart1PSUDetails = null;
-          this.pcPart2PSUDetails = null;
-          this.pcPart1StorageDetails = null;
-          this.pcPart2StorageDetails = null;
-          this.pcPart1RAMDetails= null;
-          this.pcPart2RAMDetails= null;
-
-          this.pcPart1Options = data.map(item => item.Name);
-          this.pcPart2Options = data.map(item => item.Name);
-        }
-        if (part === 'GPU') {
-          this.pcPart1CPUDetails = null;
-          this.pcPart2CPUDetails = null;
-          this.pcPart1MotherboardDetails = null;
-          this.pcPart2MotherboardDetails = null;
-          this.pcPart1CaseDetails = null;
-          this.pcPart2CaseDetails = null;
-          this.pcPart1PSUDetails = null;
-          this.pcPart2PSUDetails = null;
-          this.pcPart1StorageDetails = null;
-          this.pcPart2StorageDetails = null;
-          this.pcPart1RAMDetails= null;
-          this.pcPart2RAMDetails= null;
-
-          this.pcPart1Options = data.map(item => item.Name);
-          this.pcPart2Options = data.map(item => item.Name);
-        }  else if (part === 'Case') {
-          this.pcPart1CPUDetails = null;
-          this.pcPart2CPUDetails = null;
-          this.pcPart1MotherboardDetails = null;
-          this.pcPart2MotherboardDetails = null;
-          this.pcPart1GPUDetails = null;
-          this.pcPart2GPUDetails = null;
-          this.pcPart1PSUDetails = null;
-          this.pcPart2PSUDetails = null;
-          this.pcPart1StorageDetails = null;
-          this.pcPart2StorageDetails = null;
-          this.pcPart1RAMDetails= null;
-          this.pcPart2RAMDetails= null;
-
-          this.pcPart1Options = data.map(item => item.Name);
-          this.pcPart2Options = data.map(item => item.Name);
-        } else if (part === 'PSU') {
-          this.pcPart1CPUDetails = null;
-          this.pcPart2CPUDetails = null;
-          this.pcPart1MotherboardDetails = null;
-          this.pcPart2MotherboardDetails = null;
-          this.pcPart1GPUDetails = null;
-          this.pcPart2GPUDetails = null;
-          this.pcPart1CaseDetails = null;
-          this.pcPart2CaseDetails = null;
-          this.pcPart1StorageDetails = null;
-          this.pcPart2StorageDetails = null;
-          this.pcPart1RAMDetails= null;
-          this.pcPart2RAMDetails= null;
-
-          this.pcPart1Options = data.map(item => item.Name);
-          this.pcPart2Options = data.map(item => item.Name);
-        }
-        else if (part === 'Storage') {
-          this.pcPart1CPUDetails = null;
-          this.pcPart2CPUDetails = null;
-          this.pcPart1MotherboardDetails = null;
-          this.pcPart2MotherboardDetails = null;
-          this.pcPart1GPUDetails = null;
-          this.pcPart2GPUDetails = null;
-          this.pcPart1CaseDetails = null;
-          this.pcPart2CaseDetails = null;
-          this.pcPart1PSUDetails = null;
-          this.pcPart2PSUDetails = null;
-          this.pcPart1RAMDetails= null;
-          this.pcPart2RAMDetails= null;
-          this.pcPart1Options = data.map(item => item.Name);
-          this.pcPart2Options = data.map(item => item.Name);
-        }
-        else if (part === 'RAM') {
-          this.pcPart1MotherboardDetails = null;
-          this.pcPart2MotherboardDetails = null;
-          this.pcPart1GPUDetails = null;
-          this.pcPart2GPUDetails = null;
-          this.pcPart1CaseDetails = null;
-          this.pcPart2CaseDetails = null;
-          this.pcPart1PSUDetails = null;
-          this.pcPart2PSUDetails = null;
-          this.pcPart1StorageDetails = null;
-          this.pcPart2StorageDetails = null;
-          
-          this.pcPart1Options = data.map(item => item.Name);
-          this.pcPart2Options = data.map(item => item.Name);
-        }
-        else {
-          // Handle other parts if needed
-        }
-      } catch (error) {
-        console.error(`Error fetching options for ${part}:`, error);
-      }
+  </template>
+  
+  <script>
+  export default {
+    name: 'Compare',
+    data() {
+      return {
+        selectedPart: 'Motherboard', // Default selection for the top dropdown
+        pcPart1: '', // Selected PC part 1
+        pcPart2: '', // Selected PC part 2
+        pcPart1Options: [], // Options for PC part 1 dropdown
+        pcPart2Options: [] // Options for PC part 2 dropdown
+      };
     },
-    async fetchDetailsForPart(part, name) {
-  try {
-    console.log(`Fetching details for ${part} with name ${name}`);
-    let endpoint = '';
-    if (part === 'Motherboard') {
-      endpoint = `https://getmotherboard-igki44h7vq-uc.a.run.app?Name=${name}`;
-    } else if (part === 'CPU') {
-      endpoint = `https://getcpu-igki44h7vq-uc.a.run.app?Name=${name}`;
-    } 
-    else if (part === 'GPU') {
-          endpoint = `https://getgpu-igki44h7vq-uc.a.run.app?Name=${name}`;
-        }
-    else if (part === 'Case') {
-        endpoint = `https://getcase-igki44h7vq-uc.a.run.app?Name=${name}`;
-      }// Add conditions for other parts if needed
-      else if (part === 'PSU') {
-        endpoint = `https://getpsu-igki44h7vq-uc.a.run.app?Name=${name}`;
-      }
-      else if (part === 'Storage') {
-          endpoint = `https://getstorage-igki44h7vq-uc.a.run.app?Name=${name}`;
-        }
-        else if (part === 'RAM') {
-          endpoint = `https://getram-igki44h7vq-uc.a.run.app?Name=${name}`;
-        }
+    methods: {
 
-    const response = await fetch(endpoint);
-    const data = await response.json();
-    console.log(`Received data:`, data);
-    if (data && data.length > 0) {
-      const details = data[0];
-      if (part === 'CPU') {
-        if (this.pcPart1 === name) {
-          this.pcPart1CPUDetails = details;
-        } else if (this.pcPart2 === name) {
-          this.pcPart2CPUDetails = details;
-        }
-      } else if (part === 'Motherboard') {
-        if (this.pcPart1 === name) {
-          this.pcPart1MotherboardDetails = details;
-        } else if (this.pcPart2 === name) {
-          this.pcPart2MotherboardDetails = details;
-        }
-      } 
-      else if (part === 'GPU') {
-        if (this.pcPart1 === name) {
-          this.pcPart1GPUDetails = details; 
-        } else if (this.pcPart2 === name) {
-          this.pcPart2GPUDetails = details;
-        }
-       }
-       else if (part === 'Case') {
-        if (this.pcPart1 === name) {
-          this.pcPart1CaseDetails = details; 
-        } else if (this.pcPart2 === name) {
-          this.pcPart2CaseDetails = details;
-        }
-       }
-       else if (part === 'PSU') {
-        if (this.pcPart1 === name) {
-          this.pcPart1PSUDetails = details; 
-        } else if (this.pcPart2 === name) {
-          this.pcPart2PSUDetails = details;
-        }
-       }
-       else if (part === 'Storage') {
-            if (this.pcPart1 === name) {
-              this.pcPart1StorageDetails = details;
-            } else if (this.pcPart2 === name) {
-              this.pcPart2StorageDetails = details;
-            }
-          }
-          else if (part === 'RAM') {
-            if (this.pcPart1 === name) {
-              this.pcPart1RAMDetails = details;
-            } else if (this.pcPart2 === name) {
-              this.pcPart2RAMDetails = details;
-            }
-          }
-    } else {
-      console.error(`No data received for ${part} with name ${name}`);
+      logout(){
+    if(confirm("Are you sure you want to logout?")){
+        this.$router.push('/');
     }
-  } catch (error) {
-    console.error(`Error fetching details for ${part} with name ${name}:`, error);
-  }
-}
-  },
-  watch: {
-    selectedPart(newValue) {
-      if (newValue === 'CPU' || newValue === 'Motherboard' || newValue === 'GPU' || newValue === "Case" || newValue === "PSU" || newValue === "Storage" || newValue === "RAM") {
-        this.fetchOptionsForPart(newValue, `https://get${newValue.toLowerCase()}-igki44h7vq-uc.a.run.app`);
-      }
     },
-    pcPart1(newValue) {
-      if (newValue) {
-        this.fetchDetailsForPart(this.selectedPart, newValue);
+
+      async fetchOptionsForPart(part, endpoint) {
+        try {
+          const response = await fetch(endpoint);
+          const data = await response.json();
+          console.log(data); // Log the response data to the console
+          this.pcPart1Options = data.map(item => item.Name); // Assuming data is an array of objects with 'Name' property
+          this.pcPart2Options = data.map(item => item.Name); // Assuming data is an array of objects with 'Name' property
+        } catch (error) {
+          console.error(`Error fetching options for ${part}:`, error);
+        }
+      },
+      async fetchMotherboardOptions() {
+        await this.fetchOptionsForPart('Motherboard', 'https://getmotherboard-igki44h7vq-uc.a.run.app');
+      },
+      async fetchCpuOptions() {
+        await this.fetchOptionsForPart('CPU', 'https://getcpu-igki44h7vq-uc.a.run.app');
+      },
+      async fetchCasesOptions() {
+        await this.fetchOptionsForPart('Cases', 'https://getcase-igki44h7vq-uc.a.run.app');
+      },
+      async fetchRAMOptions() {
+        await this.fetchOptionsForPart('RAM', 'https://getram-igki44h7vq-uc.a.run.app');
+      },
+      async fetchStorageOptions() {
+        await this.fetchOptionsForPart('Storage', 'https://getstorage-igki44h7vq-uc.a.run.app');
+      },
+      async fetchPSUOptions() {
+        await this.fetchOptionsForPart('PSU', 'https://getpsu-igki44h7vq-uc.a.run.app');
+      },
+      async fetchGpuOptions() {
+        await this.fetchOptionsForPart('GPU', 'https://getgpu-igki44h7vq-uc.a.run.app');
       }
+      // Add more methods for other PC parts if needed
     },
-    pcPart2(newValue) {
-      if (newValue) {
-        this.fetchDetailsForPart(this.selectedPart, newValue);
+    mounted() {
+      // Fetch options based on the default selection (Motherboard)
+      this.fetchMotherboardOptions();
+    },
+    watch: {
+      selectedPart(newValue) {
+        // Fetch options based on the selected part
+        if (newValue === 'Motherboard') {
+          this.fetchMotherboardOptions();
+        } else if (newValue === 'CPU') {
+          this.fetchCpuOptions();
+        } else if (newValue === 'Cases') {
+          this.fetchCasesOptions();
+        } else if (newValue === 'RAM') {
+          this.fetchRAMOptions();
+        } else if (newValue === 'Storage') {
+          this.fetchStorageOptions();
+        } else if (newValue === 'PSU') {
+          this.fetchPSUOptions();
+        } else if (newValue === 'GPU') {
+          this.fetchGpuOptions();
+        }
+        // Add more conditions for other PC parts if needed
       }
     }
-  }
-};
-</script>
+  };
+  </script>
   
   <style scoped>
+
+.logout-btn {
+  cursor: pointer; /* Change cursor to a hand on hover */
+}
+
   body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       font-size: 18px;
       margin: 0;
       padding: 0;
       border: 0px;
-      
+      height: 100vh;
       background-color: #3f3f3f;
       overflow: hidden;
   }
@@ -812,41 +397,4 @@ export default {
       transform: translate(-50%, -50%);
       color: #ffffff
   }
-
-  .pcPart1details,
-  .pcPart2details {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #f7ebeb;
-    font-size: 1.1rem; /* Increased font size */
-    font-weight: bold; /* Bolder font weight */
-    text-align: center; /* Center align text */
-    width: 80%; /* Set width to 80% of parent container */
-    max-width: 500px; /* Set maximum width for better readability */
-  }
-
-  .pcPart1details hr,
-  .pcPart2details hr {
-    margin: .5px ; /* Add margin above and below the horizontal line */
-    border: none;
-    border-top: 1px solid #f7ebeb; /* Specify color for horizontal line */
-    width: 100%; /* Make the horizontal line span the entire width */
-  }
-  .motherBoardStyle {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #f7ebeb;
-    font-size: .8rem; /* Increased font size */
-    font-weight: bold; /* Bolder font weight */
-    text-align: center; /* Center align text */
-    width: 80%; /* Set width to 80% of parent container */
-    max-width: 500px; /* Set maximum width for better readability */
-  }
- 
   </style>
-  
-  
