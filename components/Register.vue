@@ -30,8 +30,8 @@
           <input type="text" class="form-control" id="lName" v-model="lnameInp" placeholder="Last Name">
         </div>
         <button type="submit" class="btn btn-primary" @click="registerUser">Create New User</button>
-        <router-link v-if="error" to="/Register"><button type="button" class="btn btn-danger me-2">Error! Try Again</button></router-link>
-        <router-link v-else to="/Builder"><button type="button" class="btn btn-danger me-2">User Registered Successfully</button></router-link>
+        <!--<router-link v-if="error" to="/Register"><button type="button" class="btn btn-danger me-2">Error! Try Again</button></router-link>-->
+        <!--<router-link v-else to="/Builder"><button type="button" class="btn btn-danger me-2">User Registered Successfully</button></router-link>-->
 
         <router-link to="/Login"><button class="btn btn-primary me-2">Sign In</button></router-link>
     </div>
