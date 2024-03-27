@@ -6,6 +6,7 @@
       <ul>
         <li><router-link to="/Builder">Builder</router-link></li>
         <li><router-link to="/Comparison">Comparison</router-link></li>
+        <li><router-link to="/PreBuild"><a>Build by Budget</a></router-link></li>
         <li><router-link to="/Support">Support</router-link></li>
       </ul>
     </nav>
@@ -847,3 +848,5 @@ export default {
   }
  
   </style>
+  
+  
