@@ -4,9 +4,10 @@
       <nav>
         <router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
         <ul>
-          <li><router-link to="/Builder">Builder</router-link></li>
+          <!--<li><router-link to="/Builder">Builder</router-link></li>
           <li><router-link to="/Comparison">Comparison</router-link></li>
-          <li><router-link to="/Support">Support</router-link></li>
+          <li><router-link to="/Support">Support</router-link></li>-->
+          <li><router-link to="/Register"><a>Register</a></router-link></li>
           <li><router-link to="/Login"><a>Login</a></router-link></li>
         </ul>
       </nav>
@@ -65,7 +66,7 @@ export default {
                   // Signed in
                   const user = userCredential.user;
                   console.log(user)
-                  this.$router.push({path: '/'})
+                  this.$router.push({path: '/HomePage'})
                   
               })
               .catch((error) => {
