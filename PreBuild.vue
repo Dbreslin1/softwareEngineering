@@ -277,9 +277,37 @@ export default {
     this.selectedPSU = this.psus.find(psu => psu.Budget === '750');
   } else if (this.selectedBudget === '1000') {
     // Logic for budget 1000
-    
+    // Find the motherboard with Budget = 750
+    this.selectedMotherboard = this.motherboards.find(motherboard => motherboard.Budget === '1000');
+    // Find the CPU with Budget = 750
+    this.selectedCpu = this.cpus.find(cpu => cpu.Budget === '1000');
+    // Find the case with Budget = 750
+    this.selectedCase = this.cases.find(caseItem => caseItem.Budget === '1000');
+    // Find the GPU with Budget = 750
+    this.selectedGpu = this.gpus.find(gpu => gpu.Budget === '1000');
+    // Find the RAM with Budget = 750
+    this.selectedRAM = this.rams.find(ram => ram.Budget === '1000');
+    // Find the storage with Budget = 750
+    this.selectedStorage = this.storages.find(storage => storage.Budget === '1000');
+    // Find the PSU with Budget = 750
+    this.selectedPSU = this.psus.find(psu => psu.Budget === '1000');
+
   } else if (this.selectedBudget === '1250') {
     // Logic for budget 1250
+    // Find the motherboard with Budget = 750
+    this.selectedMotherboard = this.motherboards.find(motherboard => motherboard.Budget === '1250');
+    // Find the CPU with Budget = 750
+    this.selectedCpu = this.cpus.find(cpu => cpu.Budget === '1250');
+    // Find the case with Budget = 750
+    this.selectedCase = this.cases.find(caseItem => caseItem.Budget === '1250');
+    // Find the GPU with Budget = 750
+    this.selectedGpu = this.gpus.find(gpu => gpu.Budget === '1250');
+    // Find the RAM with Budget = 750
+    this.selectedRAM = this.rams.find(ram => ram.Budget === '1250');
+    // Find the storage with Budget = 750
+    this.selectedStorage = this.storages.find(storage => storage.Budget === '1250');
+    // Find the PSU with Budget = 750
+    this.selectedPSU = this.psus.find(psu => psu.Budget === '1250');
   } else {
     // Handle invalid selection
     console.error('Invalid budget selection');
