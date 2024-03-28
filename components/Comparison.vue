@@ -2,12 +2,14 @@
   <body>
   <div>
     <nav>
-      <router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
+      <router-link to="/HomePage"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
       <ul>
         <li><router-link to="/Builder">Builder</router-link></li>
         <li><router-link to="/Comparison">Comparison</router-link></li>
         <li><router-link to="/PreBuild"><a>Build by Budget</a></router-link></li>
         <li><router-link to="/Support">Support</router-link></li>
+        <li><a @click="logout" class="logout-btn">Logout</a></li>
+
       </ul>
     </nav>
     <div class="custom-select">
@@ -58,7 +60,7 @@
             <hr>
             <p>Ethernet: {{ pcPart1MotherboardDetails.Ethernet }}</p>
             <hr>
-            <p>Form Factor: {{ pcPart1MotherboardDetails["Form Factor"] }}</p>
+            <p>Form Factor: {{ pcPart1MotherboardDetails.FormFactor }}</p>
             <hr>
             <p>M.2 Ports: {{ pcPart1MotherboardDetails["M.2 Ports"] }}</p>
             <hr>
@@ -186,7 +188,7 @@
             <hr>
             <p>Ethernet: {{ pcPart2MotherboardDetails.Ethernet }}</p>
             <hr>
-            <p>Form Factor: {{ pcPart2MotherboardDetails["Form Factor"] }}</p>
+            <p>Form Factor: {{ pcPart2MotherboardDetails["Form Factor "] }}</p>
             <hr>
             <p>M.2 Ports: {{ pcPart2MotherboardDetails["M.2 Ports"] }}</p>
             <hr>
@@ -309,6 +311,12 @@ export default {
     };
   },
   methods: {
+
+    logout(){
+    if(confirm("Are you sure you want to logout?")){
+        this.$router.push('/');
+    }
+    },
     async fetchOptionsForPart(part, endpoint) {
       try {
         const response = await fetch(endpoint);
@@ -542,15 +550,20 @@ export default {
 </script>
   
   <style scoped>
-  body {
+
+.logout-btn {
+  cursor: pointer; /* Change cursor to a hand on hover */
+}
+body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       font-size: 18px;
       margin: 0;
       padding: 0;
       border: 0px;
-      
+      height: 100vh;
       background-color: #3f3f3f;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
   }
   
   nav {
@@ -781,12 +794,14 @@ export default {
       margin-top: 20px;
       margin-left: 45%;
       margin-right: 45%;
+      width: 80%;
   }
   
   
   .rectangle-container {
       display: flex;
       justify-content: space-between;
+
   }
   
   .rectangle {
@@ -798,34 +813,46 @@ export default {
       filter: drop-shadow(10px 10px 10px #2f2e2d)
   }
   
-  .info {
-      position: absolute;
-      top: 4%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #ffffff
-  }
   .myDropDown1{
     position: absolute;
-      top: 14%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #ffffff
-  }
-
-  .pcPart1details,
-  .pcPart2details {
-    position: absolute;
-    top: 55%;
+    width: 80%;
+    top: 8%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #f7ebeb;
-    font-size: 1.1rem; /* Increased font size */
-    font-weight: bold; /* Bolder font weight */
-    text-align: center; /* Center align text */
-    width: 80%; /* Set width to 80% of parent container */
-    max-width: 500px; /* Set maximum width for better readability */
+    color: #ffffff
   }
+
+  .info {
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+}
+
+.pcPart1details,
+.pcPart2details {
+  position: relative;
+  color: #f7ebeb;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 120px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  nav ul li {
+    margin: 5px;
+    
+  }
+}
+
+@media (max-width: 465px) {
+  nav ul li {
+    display: block;
+    margin: 0;
+  }
+}
 
   .pcPart1details hr,
   .pcPart2details hr {
