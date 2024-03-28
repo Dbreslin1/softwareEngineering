@@ -4,12 +4,14 @@
       <header>
         <div>
           <nav>
-            <router-link to="/"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
+            <router-link to="/HomePage"><img src="@/assets/images/white-frame-free-png.png" class="logo" draggable="false"></router-link>
             <ul>
               <li><router-link to="/Builder" draggable="false">Builder</router-link></li>
               <li><router-link to="/Comparison" draggable="false">Comparison</router-link></li>
               <li><router-link to="/PreBuild"><a>Build by Budget</a></router-link></li>
               <li><router-link to="/Support" draggable="false">Support</router-link></li>
+              <li><a @click="logout" class="logout-btn">Logout</a></li>
+
             </ul>
           </nav>
         </div>
@@ -178,6 +180,13 @@ export default {
     this.fetchPsus();
   },
   methods: {
+
+    logout(){
+    if(confirm("Are you sure you want to logout?")){
+        this.$router.push('/');
+    }
+    },
+
     async fetchCPUs() {
       try {
         const response = await fetch('https://getcpu-igki44h7vq-uc.a.run.app');
@@ -298,6 +307,11 @@ export default {
 </script>
 
 <style scoped>
+
+.logout-btn {
+  cursor: pointer; /* Change cursor to a hand on hover */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
@@ -306,6 +320,7 @@ body {
     background-color: #3f3f3f;
     height: 100vh;
     overflow-x: hidden;
+    overflow-y: auto;
 }
 .btn {
   background-color: #4CAF50; /* Green */
