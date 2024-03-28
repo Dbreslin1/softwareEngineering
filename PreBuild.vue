@@ -23,8 +23,9 @@
     <div class="centered">
       <select v-model="selectedBudget">
         <option value="750">€750</option>
-        <option value="1000">€1000</option>
-        <option value="1250">€1250</option>
+        <option value="1150">€1150</option>
+        <option value="1400">€1400</option>
+        <option value="1750">€1750</option>
       </select>
     </div>
     <button class="btn" @click="build">BUILD</button>
@@ -115,7 +116,7 @@
             <td>{{ selectedPSU ? selectedPSU.Price : '' }}</td>
             <td></td>
             <td>
-    <a :href="selectePSU ? selectedPSU.AmazonLink : ''" target="_blank" v-if="selectedPSU && selectedPSU.AmazonLink">Amazon</a>
+              <a :href="selectedPSU ? selectedPSU.AmazonLink : ''" target="_blank" v-if="selectedPSU && selectedPSU.AmazonLink">Amazon</a>
   </td>
           </tr>
           <tr class="total-row">
@@ -300,39 +301,55 @@ export default {
     this.selectedStorage = this.storages.find(storage => storage.Budget === '750');
     // Find the PSU with Budget = 750
     this.selectedPSU = this.psus.find(psu => psu.Budget === '750');
-  } else if (this.selectedBudget === '1000') {
+  }
+  else if (this.selectedBudget === '1150') {
+    // Find the motherboard with Budget = 750
+    this.selectedMotherboard = this.motherboards.find(motherboard => motherboard.Budget === '1150');
+    // Find the CPU with Budget = 750
+    this.selectedCpu = this.cpus.find(cpu => cpu.Budget === '1150');
+    // Find the case with Budget = 750
+    this.selectedCase = this.cases.find(caseItem => caseItem.Budget === '1150');
+    // Find the GPU with Budget = 750
+    this.selectedGpu = this.gpus.find(gpu => gpu.Budget === '1150');
+    // Find the RAM with Budget = 750
+    this.selectedRAM = this.rams.find(ram => ram.Budget === '1150');
+    // Find the storage with Budget = 750
+    this.selectedStorage = this.storages.find(storage => storage.Budget === '1150');
+    // Find the PSU with Budget = 750
+    this.selectedPSU = this.psus.find(psu => psu.Budget === '1150');
+  } else if (this.selectedBudget === '1400') {
     // Logic for budget 1000
     // Find the motherboard with Budget = 750
-    this.selectedMotherboard = this.motherboards.find(motherboard => motherboard.Budget === '1000');
+    this.selectedMotherboard = this.motherboards.find(motherboard => motherboard.Budget === '1400');
     // Find the CPU with Budget = 750
-    this.selectedCpu = this.cpus.find(cpu => cpu.Budget === '1000');
+    this.selectedCpu = this.cpus.find(cpu => cpu.Budget === '1400');
     // Find the case with Budget = 750
-    this.selectedCase = this.cases.find(caseItem => caseItem.Budget === '1000');
+    this.selectedCase = this.cases.find(caseItem => caseItem.Budget === '1400');
     // Find the GPU with Budget = 750
-    this.selectedGpu = this.gpus.find(gpu => gpu.Budget === '1000');
+    this.selectedGpu = this.gpus.find(gpu => gpu.Budget === '1400');
     // Find the RAM with Budget = 750
-    this.selectedRAM = this.rams.find(ram => ram.Budget === '1000');
+    this.selectedRAM = this.rams.find(ram => ram.Budget === '1400');
     // Find the storage with Budget = 750
-    this.selectedStorage = this.storages.find(storage => storage.Budget === '1000');
+    this.selectedStorage = this.storages.find(storage => storage.Budget === '1400');
     // Find the PSU with Budget = 750
-    this.selectedPSU = this.psus.find(psu => psu.Budget === '1000');
+    this.selectedPSU = this.psus.find(psu => psu.Budget === '1400');
 
-  } else if (this.selectedBudget === '1250') {
-    // Logic for budget 1250
+  } else if (this.selectedBudget === '1750') {
+    // Logic for budget 1500
     // Find the motherboard with Budget = 750
-    this.selectedMotherboard = this.motherboards.find(motherboard => motherboard.Budget === '1250');
+    this.selectedMotherboard = this.motherboards.find(motherboard => motherboard.Budget === '1750');
     // Find the CPU with Budget = 750
-    this.selectedCpu = this.cpus.find(cpu => cpu.Budget === '1250');
+    this.selectedCpu = this.cpus.find(cpu => cpu.Budget === '1750');
     // Find the case with Budget = 750
-    this.selectedCase = this.cases.find(caseItem => caseItem.Budget === '1250');
+    this.selectedCase = this.cases.find(caseItem => caseItem.Budget === '1750');
     // Find the GPU with Budget = 750
-    this.selectedGpu = this.gpus.find(gpu => gpu.Budget === '1250');
+    this.selectedGpu = this.gpus.find(gpu => gpu.Budget === '1750');
     // Find the RAM with Budget = 750
-    this.selectedRAM = this.rams.find(ram => ram.Budget === '1250');
+    this.selectedRAM = this.rams.find(ram => ram.Budget === '1750');
     // Find the storage with Budget = 750
-    this.selectedStorage = this.storages.find(storage => storage.Budget === '1250');
+    this.selectedStorage = this.storages.find(storage => storage.Budget === '1750');
     // Find the PSU with Budget = 750
-    this.selectedPSU = this.psus.find(psu => psu.Budget === '1250');
+    this.selectedPSU = this.psus.find(psu => psu.Budget === '1750');
   } else {
     // Handle invalid selection
     console.error('Invalid budget selection');
