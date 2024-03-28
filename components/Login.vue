@@ -21,9 +21,17 @@
           <label for="floatingPassword">Password: </label>
           <input type="password" class="form-control" v-model="password" placeholder="Password">
         </div>
-        <button type="submit" class="btn btn-primary" @click="login" style="float: left;">Login</button>
-        <router-link v-if="error" to="/Login"><button type="button" class="btn btn-danger me-2">Error! Try Again</button></router-link>
-        <router-link v-else to="/Register"><button type="button" style="float: left;" class="btn btn-primary me-2">Sign Up</button></router-link>
+        <button type="submit" class="btn btn-primary mb-3" @click="login">Login</button>
+
+        <div class="sign-upsection">
+          <p class="custom-font">Don't have an account? Sign up</p>
+          <router-link to="/Register"><button type="button" class="btn btn-primary me-2 mb-3">Sign Up</button></router-link>
+
+        </div>
+        <!--<p class="custom-font">Don't have an account? Create one:</p>-->
+
+        <!--<router-link v-if="error" to="/Login"><button type="button" class="btn btn-danger me-2">Error! Try Again</button></router-link>
+        <router-link v-else to="/Register"><button type="button" style="float: left;" class="btn btn-primary me-2">Sign Up</button></router-link>-->
 
       </div>
     </div>
@@ -87,7 +95,6 @@ export default {
 
 <style scoped>
 /* Component-specific styles go here */
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
@@ -96,7 +103,8 @@ body {
     border: 0px;
     height: 100vh;
     background-color: #3f3f3f;
-    overflow: hidden;
+    overflow-x:hidden;
+    overflow-y:auto;
 }
 
 nav {
@@ -132,15 +140,14 @@ nav ul li a:hover {
   color: #fadf7f;
 }
 
-/* Form container styles */
 #MainForm {
-  width: 30%;
+  color: white;
+  width: 80%;
   height: 200px;
   margin: 50px auto;
-  background-color: #fff;
-  padding: 30px;
+  background-color: #292b29;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 .1rem .3rem #000;
   text-align: center;
 }
 
@@ -150,29 +157,68 @@ nav ul li a:hover {
 }
 
 .form-floating label {
-  color: #495057;
+  color: white;
 }
 
 .form-control {
-  border-radius: 5px;
+  border-radius: 6px;
+}
+
+/* Button container styles */
+.button-container {
+  display: flex;
+  justify-content: center;
 }
 
 /* Button styles */
+.btn {
+  margin: 0 10px;
+}
+
 .btn-primary {
-  background-color: #007bff;
+  background-color: #294d4a;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
   color: #fff;
-  margin-right: 10px;
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: #fadf7f;
+  color: black;
 }
 
-.btn-primary.me-2 {
-  margin-right: 10px;
+.btn-danger {
+  background-color: #ca3c3c;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #fff;
 }
+
+.btn-danger:hover {
+  background-color: #ff6961;
+  color: black;
+}
+
+@media (max-width: 410px) {
+  #MainForm {
+    width: 100%;
+  }
+}
+
+@media (max-width: 327px) {
+  #MainForm {
+    height: 250px;
+  }
+  .form-floating {
+    width: 100%;
+  }
+  .form-floating label {
+    display: block;
+  }
+}
+
 </style>
