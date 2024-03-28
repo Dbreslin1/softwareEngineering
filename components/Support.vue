@@ -8,6 +8,7 @@
         <ul>
           <li><router-link to="/Builder"><a>Builder</a></router-link></li>
           <li><router-link to="/Comparison"><a>Comparison</a></router-link></li>
+          <li><router-link to="/PreBuild"><a>Build by Budget</a></router-link></li>
           <li><router-link to="/Support"><a>Support</a></router-link></li>
           <li><a @click="logout" class="logout-btn">Logout</a></li>
 
@@ -60,6 +61,7 @@ function logout(){
       if (!response.ok) {
         throw new Error('Failed to submit feedback');
       }
+      feedbackData.value = '';
       return response.json();
     })
     .then(data => {
