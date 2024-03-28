@@ -30,9 +30,10 @@
           <input type="text" class="form-control" id="lName" v-model="lnameInp" placeholder="Last Name">
         </div>
         <button type="submit" class="btn btn-primary" @click="registerUser">Create New User</button>
-        <!--<router-link v-if="error" to="/Register"><button type="button" class="btn btn-danger me-2">Error! Try Again</button></router-link>-->
-        <!--<router-link v-else to="/Builder"><button type="button" class="btn btn-danger me-2">User Registered Successfully</button></router-link>-->
+        <!--<router-link v-if="error" to="/Register"><button type="button" class="btn btn-danger me-2">Error! Try Again</button></router-link>
+        <router-link v-else to="/Builder"><button type="button" class="btn btn-danger me-2">User Registered Successfully</button></router-link>-->
 
+        <p class="custom-font">Already have an account? Sign in below:</p>
         <router-link to="/Login"><button class="btn btn-primary me-2">Sign In</button></router-link>
     </div>
    </div>
@@ -79,7 +80,6 @@ export default {
           set(ref(db, 'UsersAuthList/' + credentials.user.uid),{
             fname: this.fnameInp,
             lname: this.lnameInp
-            
           });
           this.$router.push({path: '/HomePage'})
         })
@@ -89,10 +89,32 @@ export default {
           console.log(error.code);
           console.log(error.message);
         });
-        this.userRegistered = true;
+      this.userRegistered = true;
+    },
+
+    saveUserData() {
+      const userData = {
+        fname: this.fnameInp,
+        lname: this.lnameInp
+      };
+
+      fetch('https://saveusername-igki44h7vq-uc.a.run.app', {
+        method: "POST",
+        body: JSON.stringify(userData),
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to post user data to the server');
+        }
+        // Handle success if needed
+      })
+      .catch(error => {
+        console.error('Error posting user data:', error);
+      });
     }
   }
-};
+    };
+
 </script>
 
 <style scoped>
@@ -106,7 +128,9 @@ body {
     border: 0px;
     height: 100vh;
     background-color: #3f3f3f;
-    overflow: hidden;
+    color: white;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 nav {
@@ -144,12 +168,12 @@ nav ul li a:hover {
 
 /* Form container styles */
 #MainForm {
-  width: 20%;
+  width: 80%;
+  height: 300px;
   margin: 50px auto;
-  background-color: #fff;
-  padding: 30px;
+  background-color: #292b29;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 .1rem .3rem #000;
   text-align: center;
 }
 
@@ -159,7 +183,7 @@ nav ul li a:hover {
 }
 
 .form-floating label {
-  color: #495057;
+  color: white;
 }
 
 .form-control {
@@ -168,7 +192,7 @@ nav ul li a:hover {
 
 /* Button styles */
 .btn-primary {
-  background-color: #007bff;
+  background-color: #294d4a;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -178,10 +202,30 @@ nav ul li a:hover {
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: #fadf7f;
+  color: black;
 }
 
 .btn-primary.me-2 {
   margin-right: 10px;
 }
+
+@media (max-width: 410px) {
+  #MainForm {
+    width: 100%;
+  }
+}
+
+@media (max-width: 327px) {
+  #MainForm {
+    height: 385px;
+  }
+  .form-floating {
+    width: 100%;
+  }
+  .form-floating label {
+    display: block;
+  }
+}
+
 </style>
