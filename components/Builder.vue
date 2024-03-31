@@ -263,7 +263,7 @@ export default {
 
     checkComp() {
       if (this.selectedCpu && this.selectedMotherboard) {
-        if ((this.selectedCpu.Compatibility === this.selectedMotherboard.Compatibility) || (this.selectedCpu.Compatibility === this.selectedMotherboard.Compatibility1)) {
+        if (((this.selectedCpu.Compatibility === this.selectedMotherboard.Compatibility) || (this.selectedCpu.Compatibility === this.selectedMotherboard.Compatibility1)) && (this.selectedMotherboard.DDR === this.selectedRAM.DDR)) {
           this.compatibility = 'Compatible';
         } else {
           this.compatibility = 'Not Compatible';
